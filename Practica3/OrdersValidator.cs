@@ -17,13 +17,8 @@ namespace Practica3
             RuleFor(a => a.ShipVia).NotEmpty();
             RuleFor(a => a.Freight).NotEmpty();
             RuleFor(a => a.ShipName).NotEmpty().MaximumLength(40);
-            RuleFor(a => a.ShipAddress).NotEmpty().MaximumLength(60);
             RuleFor(a => a.ShipCity).NotEmpty().MaximumLength(15);
-            RuleFor(a => a.ShipRegion).NotEmpty().MaximumLength(15);
-            RuleFor(a => a.ShipPostalCode).NotEmpty().MaximumLength(10);
             RuleFor(a => a.ShipCountry).NotEmpty().MaximumLength(15);
-
-
         }
     }
 }

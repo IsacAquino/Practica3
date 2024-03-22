@@ -33,26 +33,27 @@ namespace Practica3
 
             string connectionString = configuration.GetConnectionString("NorthwindConnectionString");
 
-            ServiceCollection services = new ServiceCollection();
-            services.AddScoped<Menu>();
-            services.AddScoped<Productos>();
-            services.AddScoped<Categorias>();
-            services.AddScoped<Suplidores>();
-            services.AddScoped<Ordenes>();
-            services.AddScoped<OrdenesDetalles>();
-            //services.AddScoped<IValidator<Products>, ProductsValidator>();
-            services.AddValidatorsFromAssemblyContaining(typeof(Menu));
-            services.AddSingleton(configuration);
-            services.AddSingleton<ISqlConnectionFactory>(new SqlServerConnectionFactory(connectionString));
-            services.AddDbContext<NorthwindContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+            
             //IConfiguration configuration = new ConfigurationBuilder();
             
 
             try
             {
+                ServiceCollection services = new ServiceCollection();
+                services.AddScoped<Menu>();
+                services.AddScoped<Productos>();
+                services.AddScoped<Categorias>();
+                services.AddScoped<Suplidores>();
+                services.AddScoped<Ordenes>();
+                services.AddScoped<OrdenesDetalles>();
+                //services.AddScoped<IValidator<Products>, ProductsValidator>();
+                services.AddValidatorsFromAssemblyContaining(typeof(Menu));
+                services.AddSingleton(configuration);
+                services.AddSingleton<ISqlConnectionFactory>(new SqlServerConnectionFactory(connectionString));
+                services.AddDbContext<NorthwindContext>(options =>
+                {
+                    options.UseSqlServer(connectionString);
+                });
                 var serviceProvider = services.BuildServiceProvider();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

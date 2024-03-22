@@ -142,8 +142,21 @@ namespace Practica3
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
                     MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
+
+                shipViaTextBox.Clear();
+                freightTextBox.Clear();
+                shipNameTextBox.Clear();
+                shipAddressTextBox.Clear();
+                shipCityTextBox.Clear();
+                shipRegionTextBox.Clear();
+                shipPostalCodeTextBox.Clear();
+                shipCountryTextBox.Clear();
                 
             }
+
+            
+
+
             catch (DbUpdateException ex)
             {
                 // Capturar la excepción y mostrar más detalles
@@ -199,21 +212,19 @@ namespace Practica3
 
         private void ordersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //customerIdComboBox = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["ProductIdColumn"].Value);
-            //productNameTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["ProductNameColumn"].Value);
-            //supplierIDTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["SupplierIdColumn"].Value);
-            //CategoryIdTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["CategoryIdColumn"].Value);
-            //quantityTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["QuantityPerUnitColumn"].Value);
-            //UnitPricesTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitPriceColumn"].Value);
-            //StockTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitsInStockColumn"].Value);
-            //OrdenTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitsOnOrderColumn"].Value);
-            //levelTextbox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["ReorderLevelColumn"].Value);
+            shipViaTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipViaColumn1"].Value);
+            freightTextBox.Text= Convert.ToString(ordersDataGridView.CurrentRow.Cells["FreightColumn1"].Value);
+            shipNameTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipNameColumn1"].Value);
+            shipAddressTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipAddressColumn1"].Value);
+            shipCityTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipCityColumn1"].Value);
+            shipRegionTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipRegionColumn1"].Value);
+            shipPostalCodeTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipPostalCodeColumn1"].Value);
+            shipCountryTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipCountryColumn1"].Value);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //customerIdTextBox.Clear();
-            //employeeIdTextBox.Clear();
+            
             shipViaTextBox.Clear();
             freightTextBox.Clear();
             shipNameTextBox.Clear();
@@ -250,10 +261,10 @@ namespace Practica3
             if (ordersDataGridView.SelectedRows.Count > 0)
             {
                 // Obtener el valor de la clave primaria de la fila seleccionada
-                string customerId = Convert.ToString(ordersDataGridView.SelectedRows[0].Cells["CustomerIdColumn1"].Value);
+                int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
 
                 // Obtener el producto a modificar
-                var ordersToUpdate = _northwindContext.Orders.Find(customerId);
+                var ordersToUpdate = _northwindContext.Orders.Find(orderId);
                 if (ordersToUpdate != null)
                 {
                     // Actualizar las propiedades del producto con los valores de los TextBox
@@ -291,22 +302,53 @@ namespace Practica3
                     // Guardar los cambios en la base de datos
                     _northwindContext.SaveChanges();
                     LoadOrders();
-                    MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Order actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Orden no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un producto para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, seleccione una orden para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (ordersDataGridView.SelectedRows.Count > 0)
+                {
+                    // Obtener el valor de la clave primaria de la fila seleccionada
+                    int orderId= Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
 
+                    // Buscar el producto por su clave primaria
+                    var orderToDelete = _northwindContext.Orders.Find(orderId);
+                    if (orderToDelete != null)
+                    {
+                        _northwindContext.Orders.Remove(orderToDelete);
+                        _northwindContext.SaveChanges();
+                        LoadOrders();
+                        MessageBox.Show("Order eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Order no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione una orden para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+
+                MessageBox.Show("Error al eliminar el producto: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
