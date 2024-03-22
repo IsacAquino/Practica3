@@ -30,6 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
+            this.OrderIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RequiredDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShippedDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipViaColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FreightColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipAddressColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipCityColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipCountryColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipRegionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipPostalCodeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -60,25 +74,11 @@
             this.orderDateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.requiredDateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.shippedDateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.customerIdComboBox1 = new System.Windows.Forms.ComboBox();
+            this.customerIdComboBox = new System.Windows.Forms.ComboBox();
             this.northwindDataSet = new Practica3.NorthwindDataSet();
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productsTableAdapter = new Practica3.NorthwindDataSetTableAdapters.ProductsTableAdapter();
             this.employeeIdComboBox = new System.Windows.Forms.ComboBox();
-            this.OrderIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmployeeIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RequiredDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShippedDateColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipViaColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FreightColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipAddressColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipCityColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipCountryColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipRegionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShipPostalCodeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
@@ -110,6 +110,117 @@
             this.ordersDataGridView.TabIndex = 0;
             this.ordersDataGridView.Visible = false;
             this.ordersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellClick);
+            // 
+            // OrderIdColumn1
+            // 
+            this.OrderIdColumn1.DataPropertyName = "OrderId";
+            this.OrderIdColumn1.HeaderText = "Id orden";
+            this.OrderIdColumn1.MinimumWidth = 8;
+            this.OrderIdColumn1.Name = "OrderIdColumn1";
+            this.OrderIdColumn1.Width = 150;
+            // 
+            // CustomerIdColumn1
+            // 
+            this.CustomerIdColumn1.DataPropertyName = "CustomerId";
+            this.CustomerIdColumn1.HeaderText = "Id cliente";
+            this.CustomerIdColumn1.MinimumWidth = 8;
+            this.CustomerIdColumn1.Name = "CustomerIdColumn1";
+            this.CustomerIdColumn1.Width = 150;
+            // 
+            // EmployeeIdColumn1
+            // 
+            this.EmployeeIdColumn1.DataPropertyName = "EmployeeId";
+            this.EmployeeIdColumn1.HeaderText = "Id empleado";
+            this.EmployeeIdColumn1.MinimumWidth = 8;
+            this.EmployeeIdColumn1.Name = "EmployeeIdColumn1";
+            this.EmployeeIdColumn1.Width = 150;
+            // 
+            // OrderDateColumn1
+            // 
+            this.OrderDateColumn1.DataPropertyName = "OrderDate";
+            this.OrderDateColumn1.HeaderText = "Fecha Orden";
+            this.OrderDateColumn1.MinimumWidth = 8;
+            this.OrderDateColumn1.Name = "OrderDateColumn1";
+            this.OrderDateColumn1.Width = 150;
+            // 
+            // RequiredDateColumn1
+            // 
+            this.RequiredDateColumn1.DataPropertyName = "RequiredDate";
+            this.RequiredDateColumn1.HeaderText = "Fecha requerida";
+            this.RequiredDateColumn1.MinimumWidth = 8;
+            this.RequiredDateColumn1.Name = "RequiredDateColumn1";
+            this.RequiredDateColumn1.Width = 150;
+            // 
+            // ShippedDateColumn1
+            // 
+            this.ShippedDateColumn1.DataPropertyName = "ShippedDate";
+            this.ShippedDateColumn1.HeaderText = "Fecha de envio";
+            this.ShippedDateColumn1.MinimumWidth = 8;
+            this.ShippedDateColumn1.Name = "ShippedDateColumn1";
+            this.ShippedDateColumn1.Width = 150;
+            // 
+            // ShipViaColumn1
+            // 
+            this.ShipViaColumn1.DataPropertyName = "ShipVia";
+            this.ShipViaColumn1.HeaderText = "Embarcar via ID";
+            this.ShipViaColumn1.MinimumWidth = 8;
+            this.ShipViaColumn1.Name = "ShipViaColumn1";
+            this.ShipViaColumn1.Width = 150;
+            // 
+            // FreightColumn1
+            // 
+            this.FreightColumn1.DataPropertyName = "Freight";
+            this.FreightColumn1.HeaderText = "Costo Transporte";
+            this.FreightColumn1.MinimumWidth = 8;
+            this.FreightColumn1.Name = "FreightColumn1";
+            this.FreightColumn1.Width = 150;
+            // 
+            // ShipNameColumn1
+            // 
+            this.ShipNameColumn1.DataPropertyName = "ShipName";
+            this.ShipNameColumn1.HeaderText = "Nombre del barco";
+            this.ShipNameColumn1.MinimumWidth = 8;
+            this.ShipNameColumn1.Name = "ShipNameColumn1";
+            this.ShipNameColumn1.Width = 150;
+            // 
+            // ShipAddressColumn1
+            // 
+            this.ShipAddressColumn1.HeaderText = "Direccion del envio";
+            this.ShipAddressColumn1.MinimumWidth = 8;
+            this.ShipAddressColumn1.Name = "ShipAddressColumn1";
+            this.ShipAddressColumn1.Width = 150;
+            // 
+            // ShipCityColumn1
+            // 
+            this.ShipCityColumn1.DataPropertyName = "ShipCity";
+            this.ShipCityColumn1.HeaderText = "Ciudad de envio";
+            this.ShipCityColumn1.MinimumWidth = 8;
+            this.ShipCityColumn1.Name = "ShipCityColumn1";
+            this.ShipCityColumn1.Width = 150;
+            // 
+            // ShipCountryColumn1
+            // 
+            this.ShipCountryColumn1.DataPropertyName = "ShipCountry";
+            this.ShipCountryColumn1.HeaderText = "Pais de envio";
+            this.ShipCountryColumn1.MinimumWidth = 8;
+            this.ShipCountryColumn1.Name = "ShipCountryColumn1";
+            this.ShipCountryColumn1.Width = 150;
+            // 
+            // ShipRegionColumn1
+            // 
+            this.ShipRegionColumn1.DataPropertyName = "ShipRegion";
+            this.ShipRegionColumn1.HeaderText = "Region de envio";
+            this.ShipRegionColumn1.MinimumWidth = 8;
+            this.ShipRegionColumn1.Name = "ShipRegionColumn1";
+            this.ShipRegionColumn1.Width = 150;
+            // 
+            // ShipPostalCodeColumn1
+            // 
+            this.ShipPostalCodeColumn1.DataPropertyName = "ShipPostalCode";
+            this.ShipPostalCodeColumn1.HeaderText = "Envio codigo postal";
+            this.ShipPostalCodeColumn1.MinimumWidth = 8;
+            this.ShipPostalCodeColumn1.Name = "ShipPostalCodeColumn1";
+            this.ShipPostalCodeColumn1.Width = 150;
             // 
             // button6
             // 
@@ -381,14 +492,14 @@
             this.shippedDateTimePicker3.Size = new System.Drawing.Size(200, 26);
             this.shippedDateTimePicker3.TabIndex = 70;
             // 
-            // customerIdComboBox1
+            // customerIdComboBox
             // 
-            this.customerIdComboBox1.FormattingEnabled = true;
-            this.customerIdComboBox1.Location = new System.Drawing.Point(202, 42);
-            this.customerIdComboBox1.Name = "customerIdComboBox1";
-            this.customerIdComboBox1.Size = new System.Drawing.Size(214, 28);
-            this.customerIdComboBox1.TabIndex = 73;
-            this.customerIdComboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.customerIdComboBox.FormattingEnabled = true;
+            this.customerIdComboBox.Location = new System.Drawing.Point(202, 42);
+            this.customerIdComboBox.Name = "customerIdComboBox";
+            this.customerIdComboBox.Size = new System.Drawing.Size(214, 28);
+            this.customerIdComboBox.TabIndex = 73;
+            this.customerIdComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // northwindDataSet
             // 
@@ -414,124 +525,13 @@
             this.employeeIdComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.employeeIdComboBox_DrawItem);
             this.employeeIdComboBox.SelectedIndexChanged += new System.EventHandler(this.employeeIdComboBox_SelectedIndexChanged);
             // 
-            // OrderIdColumn1
-            // 
-            this.OrderIdColumn1.DataPropertyName = "OrderId";
-            this.OrderIdColumn1.HeaderText = "Id orden";
-            this.OrderIdColumn1.MinimumWidth = 8;
-            this.OrderIdColumn1.Name = "OrderIdColumn1";
-            this.OrderIdColumn1.Width = 150;
-            // 
-            // CustomerIdColumn1
-            // 
-            this.CustomerIdColumn1.DataPropertyName = "CustomerId";
-            this.CustomerIdColumn1.HeaderText = "Id cliente";
-            this.CustomerIdColumn1.MinimumWidth = 8;
-            this.CustomerIdColumn1.Name = "CustomerIdColumn1";
-            this.CustomerIdColumn1.Width = 150;
-            // 
-            // EmployeeIdColumn1
-            // 
-            this.EmployeeIdColumn1.DataPropertyName = "EmployeeId";
-            this.EmployeeIdColumn1.HeaderText = "Id empleado";
-            this.EmployeeIdColumn1.MinimumWidth = 8;
-            this.EmployeeIdColumn1.Name = "EmployeeIdColumn1";
-            this.EmployeeIdColumn1.Width = 150;
-            // 
-            // OrderDateColumn1
-            // 
-            this.OrderDateColumn1.DataPropertyName = "OrderDate";
-            this.OrderDateColumn1.HeaderText = "Fecha Orden";
-            this.OrderDateColumn1.MinimumWidth = 8;
-            this.OrderDateColumn1.Name = "OrderDateColumn1";
-            this.OrderDateColumn1.Width = 150;
-            // 
-            // RequiredDateColumn1
-            // 
-            this.RequiredDateColumn1.DataPropertyName = "RequiredDate";
-            this.RequiredDateColumn1.HeaderText = "Fecha requerida";
-            this.RequiredDateColumn1.MinimumWidth = 8;
-            this.RequiredDateColumn1.Name = "RequiredDateColumn1";
-            this.RequiredDateColumn1.Width = 150;
-            // 
-            // ShippedDateColumn1
-            // 
-            this.ShippedDateColumn1.DataPropertyName = "ShippedDate";
-            this.ShippedDateColumn1.HeaderText = "Fecha de envio";
-            this.ShippedDateColumn1.MinimumWidth = 8;
-            this.ShippedDateColumn1.Name = "ShippedDateColumn1";
-            this.ShippedDateColumn1.Width = 150;
-            // 
-            // ShipViaColumn1
-            // 
-            this.ShipViaColumn1.DataPropertyName = "ShipVia";
-            this.ShipViaColumn1.HeaderText = "Embarcar via ID";
-            this.ShipViaColumn1.MinimumWidth = 8;
-            this.ShipViaColumn1.Name = "ShipViaColumn1";
-            this.ShipViaColumn1.Width = 150;
-            // 
-            // FreightColumn1
-            // 
-            this.FreightColumn1.DataPropertyName = "Freight";
-            this.FreightColumn1.HeaderText = "Costo Transporte";
-            this.FreightColumn1.MinimumWidth = 8;
-            this.FreightColumn1.Name = "FreightColumn1";
-            this.FreightColumn1.Width = 150;
-            // 
-            // ShipNameColumn1
-            // 
-            this.ShipNameColumn1.DataPropertyName = "ShipName";
-            this.ShipNameColumn1.HeaderText = "Nombre del barco";
-            this.ShipNameColumn1.MinimumWidth = 8;
-            this.ShipNameColumn1.Name = "ShipNameColumn1";
-            this.ShipNameColumn1.Width = 150;
-            // 
-            // ShipAddressColumn1
-            // 
-            this.ShipAddressColumn1.HeaderText = "Direccion del envio";
-            this.ShipAddressColumn1.MinimumWidth = 8;
-            this.ShipAddressColumn1.Name = "ShipAddressColumn1";
-            this.ShipAddressColumn1.Width = 150;
-            // 
-            // ShipCityColumn1
-            // 
-            this.ShipCityColumn1.DataPropertyName = "ShipCity";
-            this.ShipCityColumn1.HeaderText = "Ciudad de envio";
-            this.ShipCityColumn1.MinimumWidth = 8;
-            this.ShipCityColumn1.Name = "ShipCityColumn1";
-            this.ShipCityColumn1.Width = 150;
-            // 
-            // ShipCountryColumn1
-            // 
-            this.ShipCountryColumn1.DataPropertyName = "ShipCountry";
-            this.ShipCountryColumn1.HeaderText = "Pais de envio";
-            this.ShipCountryColumn1.MinimumWidth = 8;
-            this.ShipCountryColumn1.Name = "ShipCountryColumn1";
-            this.ShipCountryColumn1.Width = 150;
-            // 
-            // ShipRegionColumn1
-            // 
-            this.ShipRegionColumn1.DataPropertyName = "ShipRegion";
-            this.ShipRegionColumn1.HeaderText = "Region de envio";
-            this.ShipRegionColumn1.MinimumWidth = 8;
-            this.ShipRegionColumn1.Name = "ShipRegionColumn1";
-            this.ShipRegionColumn1.Width = 150;
-            // 
-            // ShipPostalCodeColumn1
-            // 
-            this.ShipPostalCodeColumn1.DataPropertyName = "ShipPostalCode";
-            this.ShipPostalCodeColumn1.HeaderText = "Envio codigo postal";
-            this.ShipPostalCodeColumn1.MinimumWidth = 8;
-            this.ShipPostalCodeColumn1.Name = "ShipPostalCodeColumn1";
-            this.ShipPostalCodeColumn1.Width = 150;
-            // 
             // Ordenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 589);
             this.Controls.Add(this.employeeIdComboBox);
-            this.Controls.Add(this.customerIdComboBox1);
+            this.Controls.Add(this.customerIdComboBox);
             this.Controls.Add(this.shippedDateTimePicker3);
             this.Controls.Add(this.requiredDateTimePicker2);
             this.Controls.Add(this.orderDateTimePicker1);
@@ -608,7 +608,7 @@
         private System.Windows.Forms.DateTimePicker orderDateTimePicker1;
         private System.Windows.Forms.DateTimePicker requiredDateTimePicker2;
         private System.Windows.Forms.DateTimePicker shippedDateTimePicker3;
-        private System.Windows.Forms.ComboBox customerIdComboBox1;
+        private System.Windows.Forms.ComboBox customerIdComboBox;
         private NorthwindDataSet northwindDataSet;
         private System.Windows.Forms.BindingSource productsBindingSource;
         private NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;

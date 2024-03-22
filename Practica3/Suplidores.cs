@@ -109,6 +109,7 @@ namespace Practica3
         {
             companyNameTextBox.Clear();
             contactTitleTextBox.Clear();
+            contactNameTextBox.Clear();
             AddressTextBox.Clear();
             cityTextBox.Clear();
             regionTextBox.Clear();
@@ -144,7 +145,7 @@ namespace Practica3
             if (SuppliersDataGridView.SelectedRows.Count > 0)
             {
                 // Obtener el valor de la clave primaria de la fila seleccionada
-                int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SupplierId"].Value);
+                int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
 
                 // Obtener el producto a modificar
                 var supplierToUpdate = _northwindContext.Suppliers.Find(supplierId);
@@ -190,17 +191,17 @@ namespace Practica3
 
         private void SuppliersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            companyNameTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["companyName"].Value);
-            contactNameTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["contactName"].Value);
-            contactTitleTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["contactTitle"].Value);
-            AddressTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["Address"].Value);
-            cityTextBox.Text= Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["City"].Value);
-            regionTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["Region"].Value);
-            postalCodeTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["PostalCode"].Value);
-            countryTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["Country"].Value);
-            phoneTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["phone"].Value);
-            faxTextBox.Text= Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["Fax"].Value);
-            homePageTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["HomePage"].Value);
+            companyNameTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["CompanyNameColumn1"].Value);
+            contactNameTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["ContactNameColumn1"].Value);
+            contactTitleTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["ContactTitleColumn1"].Value);
+            AddressTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["AddressColumn1"].Value);
+            cityTextBox.Text= Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["CityColumn1"].Value);
+            regionTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["RegionColumn1"].Value);
+            postalCodeTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["PostalCodeColumn1"].Value);
+            countryTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["CountryColumn1"].Value);
+            phoneTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["PhoneColumn1"].Value);
+            faxTextBox.Text= Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["FaxColumn1"].Value);
+            homePageTextBox.Text = Convert.ToString(SuppliersDataGridView.CurrentRow.Cells["HomePageColumn1"].Value);
 
         }
 
@@ -216,7 +217,7 @@ namespace Practica3
                 if (SuppliersDataGridView.SelectedRows.Count > 0)
                 {
                     // Obtener el valor de la clave primaria de la fila seleccionada
-                    int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SupplierId"].Value);
+                    int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
 
                     // Buscar el producto por su clave primaria
                     var supplierToDelete = _northwindContext.Suppliers.Find(supplierId);

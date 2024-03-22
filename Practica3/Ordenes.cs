@@ -29,7 +29,7 @@ namespace Practica3
             this._northwindContext = northwindContext;
             this._ordersValidator = ordersValidator;
             ordersDataGridView.AutoGenerateColumns = false;
-            customerIdComboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            customerIdComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             employeeIdComboBox.SelectedIndexChanged += employeeIdComboBox_SelectedIndexChanged;
             employeeIdComboBox.DrawItem += employeeIdComboBox_DrawItem;
 
@@ -48,7 +48,7 @@ namespace Practica3
 
             //Cargar clientes en el ComboBox
             var clientes = _northwindContext.Customers.Select(c => c.CustomerId).ToList();
-            customerIdComboBox1.DataSource = clientes;
+            customerIdComboBox.DataSource = clientes;
 
             //LoadOrders();
 
@@ -87,7 +87,7 @@ namespace Practica3
             {
                 var orders = new Orders();
 
-                orders.CustomerId = customerIdComboBox1.Text;
+                orders.CustomerId = customerIdComboBox.Text;
 
                 // Obtener el ID del empleado seleccionado
                 if (employeeIdComboBox.SelectedItem != null)
@@ -212,6 +212,11 @@ namespace Practica3
 
         private void ordersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            customerIdComboBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["CustomerIdColumn1"].Value);
+            employeeIdComboBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["EmployeeIdColumn1"].Value);
+            orderDateTimePicker1.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["OrderDateColumn1"].Value);
+            requiredDateTimePicker2.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["RequiredDateColumn1"].Value);
+            shippedDateTimePicker3.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShippedDateColumn1"].Value);
             shipViaTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipViaColumn1"].Value);
             freightTextBox.Text= Convert.ToString(ordersDataGridView.CurrentRow.Cells["FreightColumn1"].Value);
             shipNameTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipNameColumn1"].Value);
@@ -258,61 +263,131 @@ namespace Practica3
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (ordersDataGridView.SelectedRows.Count > 0)
+            //try
+            //{
+            //    if (ordersDataGridView.SelectedRows.Count > 0)
+            //    {
+            //        // Obtener el valor de la clave primaria de la fila seleccionada
+            //        int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
+
+            //        // Obtener el producto a modificar
+            //        var ordersToUpdate = _northwindContext.Orders.Find(orderId);
+            //        if (ordersToUpdate != null)
+            //        {
+            //            // Actualizar las propiedades del producto con los valores de los TextBox
+            //            var orders = new Orders();
+
+            //            orders.CustomerId = customerIdComboBox1.Text;
+
+            //            // Obtener el ID del empleado seleccionado
+            //            if (employeeIdComboBox.SelectedItem != null)
+            //            {
+            //                orders.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
+            //            }
+
+            //            orders.OrderDate = orderDateTimePicker1.Value;
+            //            orders.RequiredDate = requiredDateTimePicker2.Value;
+            //            orders.ShippedDate = shippedDateTimePicker3.Value;
+
+            //            int shipVia;
+            //            if (int.TryParse(shipViaTextBox.Text, out shipVia))
+            //            {
+            //                orders.ShipVia = shipVia;
+            //            }
+            //            decimal freight;
+            //            if (decimal.TryParse(freightTextBox.Text, out freight))
+            //            {
+            //                orders.Freight = freight;
+            //            }
+
+            //            orders.ShipName = shipNameTextBox.Text;
+            //            orders.ShipAddress = shipAddressTextBox.Text;
+            //            orders.ShipCity = shipCityTextBox.Text;
+            //            orders.ShipRegion = shipRegionTextBox.Text;
+            //            orders.ShipPostalCode = shipPostalCodeTextBox.Text;
+            //            orders.ShipCountry = shipCountryTextBox.Text;
+            //            // Guardar los cambios en la base de datos
+            //            _northwindContext.SaveChanges();
+            //            LoadOrders();
+            //            MessageBox.Show("Order actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Orden no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Por favor, seleccione una orden para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    // Capturar la excepción y mostrar más detalles
+            //    MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+            try
             {
-                // Obtener el valor de la clave primaria de la fila seleccionada
-                int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
-
-                // Obtener el producto a modificar
-                var ordersToUpdate = _northwindContext.Orders.Find(orderId);
-                if (ordersToUpdate != null)
+                if (ordersDataGridView.SelectedRows.Count > 0)
                 {
-                    // Actualizar las propiedades del producto con los valores de los TextBox
-                    var orders = new Orders();
+                    // Obtener el valor de la clave primaria de la fila seleccionada
+                    int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
 
-                    orders.CustomerId = customerIdComboBox1.Text;
-
-                    // Obtener el ID del empleado seleccionado
-                    if (employeeIdComboBox.SelectedItem != null)
+                    // Obtener el pedido a modificar
+                    var orderToUpdate = _northwindContext.Orders.Find(orderId);
+                    if (orderToUpdate != null)
                     {
-                        orders.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
+                        // Actualizar las propiedades del pedido con los valores de los controles
+                        orderToUpdate.CustomerId = customerIdComboBox.Text;
+
+                        // Obtener el ID del empleado seleccionado
+                        if (employeeIdComboBox.SelectedItem != null)
+                        {
+                            orderToUpdate.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
+                        }
+
+                        orderToUpdate.OrderDate = orderDateTimePicker1.Value;
+                        orderToUpdate.RequiredDate = requiredDateTimePicker2.Value;
+                        orderToUpdate.ShippedDate = shippedDateTimePicker3.Value;
+
+                        int shipVia;
+                        if (int.TryParse(shipViaTextBox.Text, out shipVia))
+                        {
+                            orderToUpdate.ShipVia = shipVia;
+                        }
+                        decimal freight;
+                        if (decimal.TryParse(freightTextBox.Text, out freight))
+                        {
+                            orderToUpdate.Freight = freight;
+                        }
+
+                        orderToUpdate.ShipName = shipNameTextBox.Text;
+                        orderToUpdate.ShipAddress = shipAddressTextBox.Text;
+                        orderToUpdate.ShipCity = shipCityTextBox.Text;
+                        orderToUpdate.ShipRegion = shipRegionTextBox.Text;
+                        orderToUpdate.ShipPostalCode = shipPostalCodeTextBox.Text;
+                        orderToUpdate.ShipCountry = shipCountryTextBox.Text;
+
+                        // Guardar los cambios en la base de datos
+                        _northwindContext.SaveChanges();
+
+                        // Recargar los datos en el DataGridView
+                        LoadOrders();
+
+                        MessageBox.Show("Pedido actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    orders.OrderDate = orderDateTimePicker1.Value;
-                    orders.RequiredDate = requiredDateTimePicker2.Value;
-                    orders.ShippedDate = shippedDateTimePicker3.Value;
-
-                    int shipVia;
-                    if (int.TryParse(shipViaTextBox.Text, out shipVia))
+                    else
                     {
-                        orders.ShipVia = shipVia;
+                        MessageBox.Show("Pedido no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    decimal freight;
-                    if (decimal.TryParse(freightTextBox.Text, out freight))
-                    {
-                        orders.Freight = freight;
-                    }
-
-                    orders.ShipName = shipNameTextBox.Text;
-                    orders.ShipAddress = shipAddressTextBox.Text;
-                    orders.ShipCity = shipCityTextBox.Text;
-                    orders.ShipRegion = shipRegionTextBox.Text;
-                    orders.ShipPostalCode = shipPostalCodeTextBox.Text;
-                    orders.ShipCountry = shipCountryTextBox.Text;
-                    // Guardar los cambios en la base de datos
-                    _northwindContext.SaveChanges();
-                    LoadOrders();
-                    MessageBox.Show("Order actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Orden no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione una orden para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al actualizar el pedido: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void button6_Click(object sender, EventArgs e)
