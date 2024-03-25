@@ -42,6 +42,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -49,6 +50,7 @@
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -139,9 +141,9 @@
             this.flowLayoutPanel1.Controls.Add(this.panel5);
             this.flowLayoutPanel1.Controls.Add(this.panel7);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 104);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(287, 591);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(287, 490);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // panel2
@@ -204,12 +206,23 @@
             this.panel4.Size = new System.Drawing.Size(277, 67);
             this.panel4.TabIndex = 14;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Practica3.Properties.Resources.descarga;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(287, 106);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(838, 537);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(914, 558);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -224,6 +237,7 @@
             this.panel3.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,6 +257,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

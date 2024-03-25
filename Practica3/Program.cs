@@ -31,11 +31,7 @@ namespace Practica3
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            string connectionString = configuration.GetConnectionString("NorthwindConnectionString");
-
-            
-            //IConfiguration configuration = new ConfigurationBuilder();
-            
+            string connectionString = configuration.GetConnectionString("NorthwindConnectionString");            
 
             try
             {
@@ -46,7 +42,6 @@ namespace Practica3
                 services.AddScoped<Suplidores>();
                 services.AddScoped<Ordenes>();
                 services.AddScoped<OrdenesDetalles>();
-                //services.AddScoped<IValidator<Products>, ProductsValidator>();
                 services.AddValidatorsFromAssemblyContaining(typeof(Menu));
                 services.AddSingleton(configuration);
                 services.AddSingleton<ISqlConnectionFactory>(new SqlServerConnectionFactory(connectionString));

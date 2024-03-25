@@ -12,7 +12,7 @@ namespace Practica3
     {
         public OrderDetailsValidator()
         {
-            RuleFor(a => a.OrderId).NotEmpty();
+            
             RuleFor(a => a.ProductId).NotEmpty();
             RuleFor(a => a.UnitPrice).NotEmpty();
             RuleFor(a => a.Quantity).NotEmpty();

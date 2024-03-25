@@ -29,15 +29,27 @@ namespace Practica3
 
 
 
+
         private void OrdenesDetalles_Load(object sender, EventArgs e)
         {
+            OrderIdComboBox.DisplayMember = "OrderId"; // Nombre de la propiedad que quieres mostrar
+            OrderIdComboBox.ValueMember = "OrderId"; // Nombre de la propiedad que es el valor real
+            OrderIdComboBox.DataSource = _northwindContext.Orders.ToList();
+
+            // Configurar el ComboBox de ProductID
+            ProductIdComboBox.DisplayMember = "ProductId"; // Nombre de la propiedad que quieres mostrar
+            ProductIdComboBox.ValueMember = "ProductId"; // Nombre de la propiedad que es el valor real
+            ProductIdComboBox.DataSource = _northwindContext.Products.ToList();
             LoadOrderDetails();
         }
 
         private void LoadOrderDetails()
         {
-            orderDetailsDataGridView.DataSource = _northwindContext.OrderDetails.ToList();
 
+            orderDetailsDataGridView.DataSource = _northwindContext.OrderDetails.ToList();
+            
+            //employeeIdComboBox.DisplayMember = "FullName";
+            //employeeIdComboBox.ValueMember = "EmployeeId";
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -52,13 +64,13 @@ namespace Practica3
             {
                 var orderDetails = new OrderDetails();
                 int orderId;
-                if (int.TryParse(orderIdTextBox.Text, out orderId))
+                if (int.TryParse(OrderIdComboBox.Text, out orderId))
                 {
                     // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
                     orderDetails.OrderId = orderId;
                 }
                 int productId;
-                if (int.TryParse(productIdTextBox.Text, out productId))
+                if (int.TryParse(ProductIdComboBox.Text, out productId))
                 {
                     // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
                     orderDetails.ProductId = productId;
@@ -81,9 +93,10 @@ namespace Practica3
                     // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
                     orderDetails.Discount = discount;
                 }
-                
 
-                
+
+
+
 
                 var validationResult = _orderDetailsValidator
                     .Validate(orderDetails);
@@ -110,6 +123,11 @@ namespace Practica3
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
                     MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
+
+                unitPriceTextBox.Clear();
+                quantityTextBox.Clear();
+                discountTextBox.Clear();
+
             }
             catch (DbUpdateException ex)
             {
@@ -117,6 +135,62 @@ namespace Practica3
                 MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
+
+        }
+
+        private void orderDetailsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OrderIdComboBox.Text = Convert.ToString(orderDetailsDataGridView.CurrentRow.Cells["OrderIdColumn1"].Value);
+            ProductIdComboBox.Text = Convert.ToString(orderDetailsDataGridView.CurrentRow.Cells["ProductIdColumn1"].Value);
+            unitPriceTextBox.Text = Convert.ToString(orderDetailsDataGridView.CurrentRow.Cells["UnitPriceColumn1"].Value);
+            quantityTextBox.Text = Convert.ToString(orderDetailsDataGridView.CurrentRow.Cells["QuantityColumn1"].Value);
+            discountTextBox.Text = Convert.ToString(orderDetailsDataGridView.CurrentRow.Cells["DiscountColumn1"].Value);
+        }
+
+        private void ProductIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (ProductIdComboBox.SelectedItem != null)
+            //{
+
+            //    var selectedEmployee = (OrderDetails)ProductIdComboBox.SelectedItem;
+
+
+            //    int selectedEmployeeId = selectedEmployee.ProductId;
+
+            //}
+
+            if (ProductIdComboBox.SelectedItem != null)
+            {
+                int selectedProductId;
+                if (int.TryParse(ProductIdComboBox.SelectedItem.ToString(), out selectedProductId))
+                {
+                    // Usa selectedProductId según tus necesidades
+                }
+            }
+        }
+
+        private void ProductIdComboBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0)
+                return;
+
+            var comboBox = sender as ComboBox;
+            if (comboBox == null)
+                return;
+
+            var empleado = comboBox.Items[e.Index] as OrderDetails;
+            if (empleado == null)
+                return;
+
+            // Dibujar el nombre y apellido cuando el elemento está seleccionado
+            e.DrawBackground();
+            //var text = $"{empleado.FirstName} {empleado.LastName}";
+            using (var brush = new SolidBrush(e.ForeColor))
+            {
+                //e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
+            }
+            e.DrawFocusRectangle();
         }
     }
 }

@@ -85,10 +85,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(71, 534);
+            this.button1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(369, 396);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 70);
+            this.button1.Size = new System.Drawing.Size(128, 76);
             this.button1.TabIndex = 0;
             this.button1.Text = "INSERTAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -107,11 +108,11 @@
             this.UnitsInStockColumn,
             this.UnitsOnOrderColumn,
             this.ReorderLevelColumn});
-            this.ProductsDataGridView.Location = new System.Drawing.Point(45, 174);
+            this.ProductsDataGridView.Location = new System.Drawing.Point(369, 56);
             this.ProductsDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ProductsDataGridView.Name = "ProductsDataGridView";
             this.ProductsDataGridView.RowHeadersWidth = 62;
-            this.ProductsDataGridView.Size = new System.Drawing.Size(970, 350);
+            this.ProductsDataGridView.Size = new System.Drawing.Size(831, 333);
             this.ProductsDataGridView.TabIndex = 1;
             this.ProductsDataGridView.Visible = false;
             this.ProductsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDataGridView_CellClick);
@@ -191,9 +192,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(217, 535);
+            this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button2.Location = new System.Drawing.Point(504, 396);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 70);
+            this.button2.Size = new System.Drawing.Size(128, 76);
             this.button2.TabIndex = 2;
             this.button2.Text = "LEER";
             this.button2.UseVisualStyleBackColor = true;
@@ -201,7 +203,7 @@
             // 
             // productNameTextBox
             // 
-            this.productNameTextBox.Location = new System.Drawing.Point(240, 32);
+            this.productNameTextBox.Location = new System.Drawing.Point(199, 58);
             this.productNameTextBox.Name = "productNameTextBox";
             this.productNameTextBox.Size = new System.Drawing.Size(137, 26);
             this.productNameTextBox.TabIndex = 5;
@@ -210,7 +212,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 35);
+            this.label2.Location = new System.Drawing.Point(32, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(161, 20);
             this.label2.TabIndex = 6;
@@ -219,7 +221,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 90);
+            this.label3.Location = new System.Drawing.Point(32, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 20);
             this.label3.TabIndex = 7;
@@ -227,7 +229,7 @@
             // 
             // supplierIDTextBox
             // 
-            this.supplierIDTextBox.Location = new System.Drawing.Point(240, 84);
+            this.supplierIDTextBox.Location = new System.Drawing.Point(199, 110);
             this.supplierIDTextBox.Name = "supplierIDTextBox";
             this.supplierIDTextBox.Size = new System.Drawing.Size(137, 26);
             this.supplierIDTextBox.TabIndex = 8;
@@ -235,7 +237,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 143);
+            this.label4.Location = new System.Drawing.Point(37, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 20);
             this.label4.TabIndex = 9;
@@ -243,7 +245,7 @@
             // 
             // CategoryIdTextBox
             // 
-            this.CategoryIdTextBox.Location = new System.Drawing.Point(240, 140);
+            this.CategoryIdTextBox.Location = new System.Drawing.Point(199, 166);
             this.CategoryIdTextBox.Name = "CategoryIdTextBox";
             this.CategoryIdTextBox.Size = new System.Drawing.Size(137, 26);
             this.CategoryIdTextBox.TabIndex = 10;
@@ -251,7 +253,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(404, 35);
+            this.label5.Location = new System.Drawing.Point(37, 225);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(156, 20);
             this.label5.TabIndex = 11;
@@ -259,7 +261,7 @@
             // 
             // quantityTextBox
             // 
-            this.quantityTextBox.Location = new System.Drawing.Point(566, 32);
+            this.quantityTextBox.Location = new System.Drawing.Point(199, 222);
             this.quantityTextBox.Name = "quantityTextBox";
             this.quantityTextBox.Size = new System.Drawing.Size(137, 26);
             this.quantityTextBox.TabIndex = 12;
@@ -267,7 +269,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(441, 84);
+            this.label6.Location = new System.Drawing.Point(74, 274);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 20);
             this.label6.TabIndex = 13;
@@ -275,14 +277,14 @@
             // 
             // UnitPricesTextBox
             // 
-            this.UnitPricesTextBox.Location = new System.Drawing.Point(566, 84);
+            this.UnitPricesTextBox.Location = new System.Drawing.Point(199, 274);
             this.UnitPricesTextBox.Name = "UnitPricesTextBox";
             this.UnitPricesTextBox.Size = new System.Drawing.Size(137, 26);
             this.UnitPricesTextBox.TabIndex = 14;
             // 
             // StockTextBox
             // 
-            this.StockTextBox.Location = new System.Drawing.Point(566, 137);
+            this.StockTextBox.Location = new System.Drawing.Point(199, 324);
             this.StockTextBox.Multiline = true;
             this.StockTextBox.Name = "StockTextBox";
             this.StockTextBox.Size = new System.Drawing.Size(137, 26);
@@ -290,7 +292,7 @@
             // 
             // OrdenTextBox
             // 
-            this.OrdenTextBox.Location = new System.Drawing.Point(886, 35);
+            this.OrdenTextBox.Location = new System.Drawing.Point(199, 376);
             this.OrdenTextBox.Name = "OrdenTextBox";
             this.OrdenTextBox.Size = new System.Drawing.Size(137, 26);
             this.OrdenTextBox.TabIndex = 16;
@@ -298,7 +300,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(412, 140);
+            this.label7.Location = new System.Drawing.Point(45, 327);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(145, 20);
             this.label7.TabIndex = 17;
@@ -307,7 +309,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(729, 35);
+            this.label8.Location = new System.Drawing.Point(42, 376);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(148, 20);
             this.label8.TabIndex = 18;
@@ -316,7 +318,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(732, 81);
+            this.label9.Location = new System.Drawing.Point(45, 433);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(124, 20);
             this.label9.TabIndex = 19;
@@ -324,16 +326,17 @@
             // 
             // levelTextbox
             // 
-            this.levelTextbox.Location = new System.Drawing.Point(886, 81);
+            this.levelTextbox.Location = new System.Drawing.Point(199, 433);
             this.levelTextbox.Name = "levelTextbox";
             this.levelTextbox.Size = new System.Drawing.Size(137, 26);
             this.levelTextbox.TabIndex = 20;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(652, 534);
+            this.button3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(938, 397);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(139, 70);
+            this.button3.Size = new System.Drawing.Size(128, 76);
             this.button3.TabIndex = 21;
             this.button3.Text = "ELIMINAR";
             this.button3.UseVisualStyleBackColor = true;
@@ -341,9 +344,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(362, 535);
+            this.button4.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(638, 397);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(139, 70);
+            this.button4.Size = new System.Drawing.Size(160, 76);
             this.button4.TabIndex = 22;
             this.button4.Text = "ACTUALIZAR";
             this.button4.UseVisualStyleBackColor = true;
@@ -351,9 +355,10 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(507, 535);
+            this.button5.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(804, 397);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(139, 70);
+            this.button5.Size = new System.Drawing.Size(128, 76);
             this.button5.TabIndex = 23;
             this.button5.Text = "LIMPIAR";
             this.button5.UseVisualStyleBackColor = true;
@@ -361,9 +366,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(797, 535);
+            this.button6.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button6.Location = new System.Drawing.Point(1072, 397);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(139, 70);
+            this.button6.Size = new System.Drawing.Size(128, 76);
             this.button6.TabIndex = 24;
             this.button6.Text = "SALIR";
             this.button6.UseVisualStyleBackColor = true;
@@ -373,8 +379,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1103, 617);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1233, 482);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);

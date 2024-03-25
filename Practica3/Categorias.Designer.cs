@@ -37,12 +37,12 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.picturePictureBox = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.picturePictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.CategoriesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.CategoriesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CategoryNameColumn1,
             this.DescriptionColumn1});
-            this.CategoriesDataGridView.Location = new System.Drawing.Point(30, 231);
+            this.CategoriesDataGridView.Location = new System.Drawing.Point(353, 32);
             this.CategoriesDataGridView.MultiSelect = false;
             this.CategoriesDataGridView.Name = "CategoriesDataGridView";
             this.CategoriesDataGridView.ReadOnly = true;
@@ -62,7 +62,7 @@
             this.CategoriesDataGridView.RowHeadersWidth = 62;
             this.CategoriesDataGridView.RowTemplate.Height = 28;
             this.CategoriesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CategoriesDataGridView.Size = new System.Drawing.Size(634, 253);
+            this.CategoriesDataGridView.Size = new System.Drawing.Size(858, 330);
             this.CategoriesDataGridView.TabIndex = 0;
             this.CategoriesDataGridView.Visible = false;
             // 
@@ -87,7 +87,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 81);
+            this.label1.Location = new System.Drawing.Point(61, 163);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(161, 20);
             this.label1.TabIndex = 1;
@@ -95,7 +95,7 @@
             // 
             // categoryNameTextBox
             // 
-            this.categoryNameTextBox.Location = new System.Drawing.Point(181, 78);
+            this.categoryNameTextBox.Location = new System.Drawing.Point(228, 160);
             this.categoryNameTextBox.Name = "categoryNameTextBox";
             this.categoryNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.categoryNameTextBox.TabIndex = 2;
@@ -103,7 +103,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 127);
+            this.label2.Location = new System.Drawing.Point(61, 209);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 3;
@@ -111,16 +111,17 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(181, 124);
+            this.descriptionTextBox.Location = new System.Drawing.Point(228, 206);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(100, 26);
             this.descriptionTextBox.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 510);
+            this.button1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(329, 386);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 38);
+            this.button1.Size = new System.Drawing.Size(139, 70);
             this.button1.TabIndex = 5;
             this.button1.Text = "INSERTAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -128,36 +129,31 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(343, 510);
+            this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button2.Location = new System.Drawing.Point(764, 386);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(140, 38);
+            this.button2.Size = new System.Drawing.Size(157, 70);
             this.button2.TabIndex = 6;
             this.button2.Text = "ACTUALIZAR";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // picturePictureBox
-            // 
-            this.picturePictureBox.Location = new System.Drawing.Point(377, 12);
-            this.picturePictureBox.Name = "picturePictureBox";
-            this.picturePictureBox.Size = new System.Drawing.Size(279, 200);
-            this.picturePictureBox.TabIndex = 9;
-            this.picturePictureBox.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(293, 101);
+            this.label4.Location = new System.Drawing.Point(15, 502);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 10;
             this.label4.Text = "Picture:";
+            this.label4.Visible = false;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(245, 513);
+            this.button3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(619, 386);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 32);
+            this.button3.Size = new System.Drawing.Size(139, 70);
             this.button3.TabIndex = 30;
             this.button3.Text = "LEER";
             this.button3.UseVisualStyleBackColor = true;
@@ -165,9 +161,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(152, 512);
+            this.button4.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(474, 386);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 33);
+            this.button4.Size = new System.Drawing.Size(139, 70);
             this.button4.TabIndex = 29;
             this.button4.Text = "LIMPIAR";
             this.button4.UseVisualStyleBackColor = true;
@@ -175,9 +172,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(489, 512);
+            this.button6.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button6.Location = new System.Drawing.Point(927, 388);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(125, 32);
+            this.button6.Size = new System.Drawing.Size(139, 70);
             this.button6.TabIndex = 33;
             this.button6.Text = "ELIMINAR";
             this.button6.UseVisualStyleBackColor = true;
@@ -185,19 +183,30 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(620, 510);
+            this.button5.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(1072, 388);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(125, 32);
+            this.button5.Size = new System.Drawing.Size(139, 70);
             this.button5.TabIndex = 32;
             this.button5.Text = "SALIR";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // picturePictureBox
+            // 
+            this.picturePictureBox.Location = new System.Drawing.Point(108, 448);
+            this.picturePictureBox.Name = "picturePictureBox";
+            this.picturePictureBox.Size = new System.Drawing.Size(193, 149);
+            this.picturePictureBox.TabIndex = 9;
+            this.picturePictureBox.TabStop = false;
+            this.picturePictureBox.Visible = false;
+            // 
             // Categorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 572);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1241, 476);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
