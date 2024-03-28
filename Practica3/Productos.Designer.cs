@@ -34,15 +34,6 @@
             this.productsTableAdapter = new Practica3.NorthwindDataSetTableAdapters.ProductsTableAdapter();
             this.button1 = new System.Windows.Forms.Button();
             this.ProductsDataGridView = new System.Windows.Forms.DataGridView();
-            this.ProductIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityPerUnitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsInStockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsOnOrderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReorderLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,6 +55,15 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.ProductIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityPerUnitColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsInStockColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitsOnOrderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReorderLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDataGridView)).BeginInit();
@@ -117,78 +117,6 @@
             this.ProductsDataGridView.Visible = false;
             this.ProductsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDataGridView_CellClick);
             this.ProductsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDataGridView_CellContentClick);
-            // 
-            // ProductIdColumn
-            // 
-            this.ProductIdColumn.DataPropertyName = "ProductId";
-            this.ProductIdColumn.HeaderText = "ProductId";
-            this.ProductIdColumn.MinimumWidth = 8;
-            this.ProductIdColumn.Name = "ProductIdColumn";
-            this.ProductIdColumn.Width = 150;
-            // 
-            // ProductNameColumn
-            // 
-            this.ProductNameColumn.DataPropertyName = "ProductName";
-            this.ProductNameColumn.HeaderText = "Product Name";
-            this.ProductNameColumn.MinimumWidth = 8;
-            this.ProductNameColumn.Name = "ProductNameColumn";
-            this.ProductNameColumn.Width = 150;
-            // 
-            // SupplierIdColumn
-            // 
-            this.SupplierIdColumn.DataPropertyName = "SupplierId";
-            this.SupplierIdColumn.HeaderText = "SupplierId";
-            this.SupplierIdColumn.MinimumWidth = 8;
-            this.SupplierIdColumn.Name = "SupplierIdColumn";
-            this.SupplierIdColumn.Width = 150;
-            // 
-            // CategoryIdColumn
-            // 
-            this.CategoryIdColumn.DataPropertyName = "CategoryId";
-            this.CategoryIdColumn.HeaderText = "CategoryId";
-            this.CategoryIdColumn.MinimumWidth = 8;
-            this.CategoryIdColumn.Name = "CategoryIdColumn";
-            this.CategoryIdColumn.Width = 150;
-            // 
-            // QuantityPerUnitColumn
-            // 
-            this.QuantityPerUnitColumn.DataPropertyName = "QuantityPerUnit";
-            this.QuantityPerUnitColumn.HeaderText = "QuantityPerUnit";
-            this.QuantityPerUnitColumn.MinimumWidth = 8;
-            this.QuantityPerUnitColumn.Name = "QuantityPerUnitColumn";
-            this.QuantityPerUnitColumn.Width = 150;
-            // 
-            // UnitPriceColumn
-            // 
-            this.UnitPriceColumn.DataPropertyName = "UnitPrice";
-            this.UnitPriceColumn.HeaderText = "Unit Price";
-            this.UnitPriceColumn.MinimumWidth = 8;
-            this.UnitPriceColumn.Name = "UnitPriceColumn";
-            this.UnitPriceColumn.Width = 150;
-            // 
-            // UnitsInStockColumn
-            // 
-            this.UnitsInStockColumn.DataPropertyName = "UnitsInStock";
-            this.UnitsInStockColumn.HeaderText = "Units In Stock";
-            this.UnitsInStockColumn.MinimumWidth = 8;
-            this.UnitsInStockColumn.Name = "UnitsInStockColumn";
-            this.UnitsInStockColumn.Width = 150;
-            // 
-            // UnitsOnOrderColumn
-            // 
-            this.UnitsOnOrderColumn.DataPropertyName = "UnitsOnOrder";
-            this.UnitsOnOrderColumn.HeaderText = "Units On Order";
-            this.UnitsOnOrderColumn.MinimumWidth = 8;
-            this.UnitsOnOrderColumn.Name = "UnitsOnOrderColumn";
-            this.UnitsOnOrderColumn.Width = 150;
-            // 
-            // ReorderLevelColumn
-            // 
-            this.ReorderLevelColumn.DataPropertyName = "ReorderLevel";
-            this.ReorderLevelColumn.HeaderText = "Reorder Level";
-            this.ReorderLevelColumn.MinimumWidth = 8;
-            this.ReorderLevelColumn.Name = "ReorderLevelColumn";
-            this.ReorderLevelColumn.Width = 150;
             // 
             // button2
             // 
@@ -375,6 +303,79 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // ProductIdColumn
+            // 
+            this.ProductIdColumn.DataPropertyName = "ProductId";
+            this.ProductIdColumn.HeaderText = "ProductId";
+            this.ProductIdColumn.MinimumWidth = 8;
+            this.ProductIdColumn.Name = "ProductIdColumn";
+            this.ProductIdColumn.Visible = false;
+            this.ProductIdColumn.Width = 150;
+            // 
+            // ProductNameColumn
+            // 
+            this.ProductNameColumn.DataPropertyName = "ProductName";
+            this.ProductNameColumn.HeaderText = "Product Name";
+            this.ProductNameColumn.MinimumWidth = 8;
+            this.ProductNameColumn.Name = "ProductNameColumn";
+            this.ProductNameColumn.Width = 150;
+            // 
+            // SupplierIdColumn
+            // 
+            this.SupplierIdColumn.DataPropertyName = "SupplierId";
+            this.SupplierIdColumn.HeaderText = "SupplierId";
+            this.SupplierIdColumn.MinimumWidth = 8;
+            this.SupplierIdColumn.Name = "SupplierIdColumn";
+            this.SupplierIdColumn.Width = 150;
+            // 
+            // CategoryIdColumn
+            // 
+            this.CategoryIdColumn.DataPropertyName = "CategoryId";
+            this.CategoryIdColumn.HeaderText = "CategoryId";
+            this.CategoryIdColumn.MinimumWidth = 8;
+            this.CategoryIdColumn.Name = "CategoryIdColumn";
+            this.CategoryIdColumn.Width = 150;
+            // 
+            // QuantityPerUnitColumn
+            // 
+            this.QuantityPerUnitColumn.DataPropertyName = "QuantityPerUnit";
+            this.QuantityPerUnitColumn.HeaderText = "QuantityPerUnit";
+            this.QuantityPerUnitColumn.MinimumWidth = 8;
+            this.QuantityPerUnitColumn.Name = "QuantityPerUnitColumn";
+            this.QuantityPerUnitColumn.Width = 150;
+            // 
+            // UnitPriceColumn
+            // 
+            this.UnitPriceColumn.DataPropertyName = "UnitPrice";
+            this.UnitPriceColumn.HeaderText = "Unit Price";
+            this.UnitPriceColumn.MinimumWidth = 8;
+            this.UnitPriceColumn.Name = "UnitPriceColumn";
+            this.UnitPriceColumn.Width = 150;
+            // 
+            // UnitsInStockColumn
+            // 
+            this.UnitsInStockColumn.DataPropertyName = "UnitsInStock";
+            this.UnitsInStockColumn.HeaderText = "Units In Stock";
+            this.UnitsInStockColumn.MinimumWidth = 8;
+            this.UnitsInStockColumn.Name = "UnitsInStockColumn";
+            this.UnitsInStockColumn.Width = 150;
+            // 
+            // UnitsOnOrderColumn
+            // 
+            this.UnitsOnOrderColumn.DataPropertyName = "UnitsOnOrder";
+            this.UnitsOnOrderColumn.HeaderText = "Units On Order";
+            this.UnitsOnOrderColumn.MinimumWidth = 8;
+            this.UnitsOnOrderColumn.Name = "UnitsOnOrderColumn";
+            this.UnitsOnOrderColumn.Width = 150;
+            // 
+            // ReorderLevelColumn
+            // 
+            this.ReorderLevelColumn.DataPropertyName = "ReorderLevel";
+            this.ReorderLevelColumn.HeaderText = "Reorder Level";
+            this.ReorderLevelColumn.MinimumWidth = 8;
+            this.ReorderLevelColumn.Name = "ReorderLevelColumn";
+            this.ReorderLevelColumn.Width = 150;
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -423,15 +424,6 @@
         private NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView ProductsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityPerUnitColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsInStockColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsOnOrderColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReorderLevelColumn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox productNameTextBox;
         private System.Windows.Forms.Label label2;
@@ -453,5 +445,14 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityPerUnitColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPriceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsInStockColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsOnOrderColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReorderLevelColumn;
     }
 }

@@ -19,7 +19,8 @@ namespace Practica3
         public readonly Suplidores _suplidores;
         public readonly Ordenes _ordenes;
         public readonly OrdenesDetalles _ordenesDetalles;
-        public Menu(Productos productos, Categorias categorias, Suplidores suplidores, Ordenes ordenes, OrdenesDetalles ordenesDetalles)
+        public readonly OrdenesPrincipales _ordenesPrincipales;
+        public Menu(Productos productos, Categorias categorias, Suplidores suplidores, Ordenes ordenes, OrdenesDetalles ordenesDetalles, OrdenesPrincipales ordenesPrincipales)
         {
             InitializeComponent();
             _productos = productos;
@@ -27,11 +28,14 @@ namespace Practica3
             _suplidores = suplidores;
             _ordenes = ordenes;
             _ordenesDetalles = ordenesDetalles;
-            
-        }
+            _ordenesPrincipales = ordenesPrincipales;
 
+        }
+       
         private void button1_Click(object sender, EventArgs e)
         {
+            
+            
             _productos.ShowDialog();
         }
 
@@ -75,6 +79,9 @@ namespace Practica3
 
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            _ordenesPrincipales.Show(); 
+        }
     }
 }

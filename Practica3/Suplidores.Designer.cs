@@ -29,18 +29,6 @@
         private void InitializeComponent()
         {
             this.SuppliersDataGridView = new System.Windows.Forms.DataGridView();
-            this.SuppliersIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CompanyNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactTitleColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CityColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PostalCodeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CountryColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FaxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HomePageColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.companyNameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -69,6 +57,18 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.SuppliersIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompanyNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactTitleColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CityColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PostalCodeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CountryColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FaxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HomePageColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SuppliersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,102 +96,6 @@
             this.SuppliersDataGridView.TabIndex = 0;
             this.SuppliersDataGridView.Visible = false;
             this.SuppliersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuppliersDataGridView_CellClick);
-            // 
-            // SuppliersIdColumn1
-            // 
-            this.SuppliersIdColumn1.DataPropertyName = "SupplierId";
-            this.SuppliersIdColumn1.HeaderText = "Id Suplidores";
-            this.SuppliersIdColumn1.MinimumWidth = 8;
-            this.SuppliersIdColumn1.Name = "SuppliersIdColumn1";
-            this.SuppliersIdColumn1.Width = 150;
-            // 
-            // CompanyNameColumn1
-            // 
-            this.CompanyNameColumn1.DataPropertyName = "CompanyName";
-            this.CompanyNameColumn1.HeaderText = "Nombre compañía";
-            this.CompanyNameColumn1.MinimumWidth = 8;
-            this.CompanyNameColumn1.Name = "CompanyNameColumn1";
-            this.CompanyNameColumn1.Width = 150;
-            // 
-            // ContactNameColumn1
-            // 
-            this.ContactNameColumn1.DataPropertyName = "ContactName";
-            this.ContactNameColumn1.HeaderText = "Nombre contacto";
-            this.ContactNameColumn1.MinimumWidth = 8;
-            this.ContactNameColumn1.Name = "ContactNameColumn1";
-            this.ContactNameColumn1.Width = 150;
-            // 
-            // ContactTitleColumn1
-            // 
-            this.ContactTitleColumn1.DataPropertyName = "ContactTitle";
-            this.ContactTitleColumn1.HeaderText = "Titulo de contacto";
-            this.ContactTitleColumn1.MinimumWidth = 8;
-            this.ContactTitleColumn1.Name = "ContactTitleColumn1";
-            this.ContactTitleColumn1.Width = 150;
-            // 
-            // AddressColumn1
-            // 
-            this.AddressColumn1.DataPropertyName = "Address";
-            this.AddressColumn1.HeaderText = "Direccion";
-            this.AddressColumn1.MinimumWidth = 8;
-            this.AddressColumn1.Name = "AddressColumn1";
-            this.AddressColumn1.Width = 150;
-            // 
-            // CityColumn1
-            // 
-            this.CityColumn1.DataPropertyName = "City";
-            this.CityColumn1.HeaderText = "Ciudad";
-            this.CityColumn1.MinimumWidth = 8;
-            this.CityColumn1.Name = "CityColumn1";
-            this.CityColumn1.Width = 150;
-            // 
-            // RegionColumn1
-            // 
-            this.RegionColumn1.DataPropertyName = "Region";
-            this.RegionColumn1.HeaderText = "Región";
-            this.RegionColumn1.MinimumWidth = 8;
-            this.RegionColumn1.Name = "RegionColumn1";
-            this.RegionColumn1.Width = 150;
-            // 
-            // PostalCodeColumn1
-            // 
-            this.PostalCodeColumn1.DataPropertyName = "PostalCode";
-            this.PostalCodeColumn1.HeaderText = "Codigo postal";
-            this.PostalCodeColumn1.MinimumWidth = 8;
-            this.PostalCodeColumn1.Name = "PostalCodeColumn1";
-            this.PostalCodeColumn1.Width = 150;
-            // 
-            // CountryColumn1
-            // 
-            this.CountryColumn1.DataPropertyName = "Country";
-            this.CountryColumn1.HeaderText = "Pais";
-            this.CountryColumn1.MinimumWidth = 8;
-            this.CountryColumn1.Name = "CountryColumn1";
-            this.CountryColumn1.Width = 150;
-            // 
-            // PhoneColumn1
-            // 
-            this.PhoneColumn1.DataPropertyName = "Phone";
-            this.PhoneColumn1.HeaderText = "Celular";
-            this.PhoneColumn1.MinimumWidth = 8;
-            this.PhoneColumn1.Name = "PhoneColumn1";
-            this.PhoneColumn1.Width = 150;
-            // 
-            // FaxColumn1
-            // 
-            this.FaxColumn1.DataPropertyName = "Fax";
-            this.FaxColumn1.HeaderText = "Fax";
-            this.FaxColumn1.MinimumWidth = 8;
-            this.FaxColumn1.Name = "FaxColumn1";
-            this.FaxColumn1.Width = 150;
-            // 
-            // HomePageColumn1
-            // 
-            this.HomePageColumn1.DataPropertyName = "HomePage";
-            this.HomePageColumn1.HeaderText = "Pagina principal";
-            this.HomePageColumn1.MinimumWidth = 8;
-            this.HomePageColumn1.Name = "HomePageColumn1";
-            this.HomePageColumn1.Width = 150;
             // 
             // button1
             // 
@@ -434,6 +338,103 @@
             this.button6.Text = "ELIMINAR";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // SuppliersIdColumn1
+            // 
+            this.SuppliersIdColumn1.DataPropertyName = "SupplierId";
+            this.SuppliersIdColumn1.HeaderText = "Id Suplidores";
+            this.SuppliersIdColumn1.MinimumWidth = 8;
+            this.SuppliersIdColumn1.Name = "SuppliersIdColumn1";
+            this.SuppliersIdColumn1.Visible = false;
+            this.SuppliersIdColumn1.Width = 150;
+            // 
+            // CompanyNameColumn1
+            // 
+            this.CompanyNameColumn1.DataPropertyName = "CompanyName";
+            this.CompanyNameColumn1.HeaderText = "Nombre compañía";
+            this.CompanyNameColumn1.MinimumWidth = 8;
+            this.CompanyNameColumn1.Name = "CompanyNameColumn1";
+            this.CompanyNameColumn1.Width = 150;
+            // 
+            // ContactNameColumn1
+            // 
+            this.ContactNameColumn1.DataPropertyName = "ContactName";
+            this.ContactNameColumn1.HeaderText = "Nombre contacto";
+            this.ContactNameColumn1.MinimumWidth = 8;
+            this.ContactNameColumn1.Name = "ContactNameColumn1";
+            this.ContactNameColumn1.Width = 150;
+            // 
+            // ContactTitleColumn1
+            // 
+            this.ContactTitleColumn1.DataPropertyName = "ContactTitle";
+            this.ContactTitleColumn1.HeaderText = "Titulo de contacto";
+            this.ContactTitleColumn1.MinimumWidth = 8;
+            this.ContactTitleColumn1.Name = "ContactTitleColumn1";
+            this.ContactTitleColumn1.Width = 150;
+            // 
+            // AddressColumn1
+            // 
+            this.AddressColumn1.DataPropertyName = "Address";
+            this.AddressColumn1.HeaderText = "Direccion";
+            this.AddressColumn1.MinimumWidth = 8;
+            this.AddressColumn1.Name = "AddressColumn1";
+            this.AddressColumn1.Width = 150;
+            // 
+            // CityColumn1
+            // 
+            this.CityColumn1.DataPropertyName = "City";
+            this.CityColumn1.HeaderText = "Ciudad";
+            this.CityColumn1.MinimumWidth = 8;
+            this.CityColumn1.Name = "CityColumn1";
+            this.CityColumn1.Width = 150;
+            // 
+            // RegionColumn1
+            // 
+            this.RegionColumn1.DataPropertyName = "Region";
+            this.RegionColumn1.HeaderText = "Región";
+            this.RegionColumn1.MinimumWidth = 8;
+            this.RegionColumn1.Name = "RegionColumn1";
+            this.RegionColumn1.Width = 150;
+            // 
+            // PostalCodeColumn1
+            // 
+            this.PostalCodeColumn1.DataPropertyName = "PostalCode";
+            this.PostalCodeColumn1.HeaderText = "Codigo postal";
+            this.PostalCodeColumn1.MinimumWidth = 8;
+            this.PostalCodeColumn1.Name = "PostalCodeColumn1";
+            this.PostalCodeColumn1.Width = 150;
+            // 
+            // CountryColumn1
+            // 
+            this.CountryColumn1.DataPropertyName = "Country";
+            this.CountryColumn1.HeaderText = "Pais";
+            this.CountryColumn1.MinimumWidth = 8;
+            this.CountryColumn1.Name = "CountryColumn1";
+            this.CountryColumn1.Width = 150;
+            // 
+            // PhoneColumn1
+            // 
+            this.PhoneColumn1.DataPropertyName = "Phone";
+            this.PhoneColumn1.HeaderText = "Celular";
+            this.PhoneColumn1.MinimumWidth = 8;
+            this.PhoneColumn1.Name = "PhoneColumn1";
+            this.PhoneColumn1.Width = 150;
+            // 
+            // FaxColumn1
+            // 
+            this.FaxColumn1.DataPropertyName = "Fax";
+            this.FaxColumn1.HeaderText = "Fax";
+            this.FaxColumn1.MinimumWidth = 8;
+            this.FaxColumn1.Name = "FaxColumn1";
+            this.FaxColumn1.Width = 150;
+            // 
+            // HomePageColumn1
+            // 
+            this.HomePageColumn1.DataPropertyName = "HomePage";
+            this.HomePageColumn1.HeaderText = "Pagina principal";
+            this.HomePageColumn1.MinimumWidth = 8;
+            this.HomePageColumn1.Name = "HomePageColumn1";
+            this.HomePageColumn1.Width = 150;
             // 
             // Suplidores
             // 

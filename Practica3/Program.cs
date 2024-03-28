@@ -42,6 +42,7 @@ namespace Practica3
                 services.AddScoped<Suplidores>();
                 services.AddScoped<Ordenes>();
                 services.AddScoped<OrdenesDetalles>();
+                services.AddScoped<OrdenesPrincipales>();
                 services.AddValidatorsFromAssemblyContaining(typeof(Menu));
                 services.AddSingleton(configuration);
                 services.AddSingleton<ISqlConnectionFactory>(new SqlServerConnectionFactory(connectionString));

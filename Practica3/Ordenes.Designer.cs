@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ordersDataGridView = new System.Windows.Forms.DataGridView();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -66,6 +65,7 @@
             this.productsTableAdapter = new Practica3.NorthwindDataSetTableAdapters.ProductsTableAdapter();
             this.employeeIdComboBox = new System.Windows.Forms.ComboBox();
             this.northwindDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ordersDataGridView = new System.Windows.Forms.DataGridView();
             this.OrderIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EmployeeIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,44 +80,20 @@
             this.ShipCountryColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipRegionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipPostalCodeColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
+            this.ProductIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPriceColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiscountColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ordersDataGridView
-            // 
-            this.ordersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ordersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OrderIdColumn1,
-            this.CustomerIdColumn1,
-            this.EmployeeIdColumn1,
-            this.OrderDateColumn1,
-            this.RequiredDateColumn1,
-            this.ShippedDateColumn1,
-            this.ShipViaColumn1,
-            this.FreightColumn1,
-            this.ShipNameColumn1,
-            this.ShipAddressColumn1,
-            this.ShipCityColumn1,
-            this.ShipCountryColumn1,
-            this.ShipRegionColumn1,
-            this.ShipPostalCodeColumn1});
-            this.ordersDataGridView.Location = new System.Drawing.Point(376, 40);
-            this.ordersDataGridView.Name = "ordersDataGridView";
-            this.ordersDataGridView.RowHeadersWidth = 62;
-            this.ordersDataGridView.RowTemplate.Height = 28;
-            this.ordersDataGridView.Size = new System.Drawing.Size(890, 466);
-            this.ordersDataGridView.TabIndex = 0;
-            this.ordersDataGridView.Visible = false;
-            this.ordersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellClick);
-            this.ordersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellContentClick);
             // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button6.Location = new System.Drawing.Point(982, 517);
+            this.button6.Location = new System.Drawing.Point(967, 496);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(139, 70);
             this.button6.TabIndex = 39;
@@ -128,7 +104,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button5.Location = new System.Drawing.Point(1127, 517);
+            this.button5.Location = new System.Drawing.Point(1112, 496);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(139, 70);
             this.button5.TabIndex = 38;
@@ -139,7 +115,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button3.Location = new System.Drawing.Point(666, 517);
+            this.button3.Location = new System.Drawing.Point(651, 496);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(139, 70);
             this.button3.TabIndex = 37;
@@ -150,7 +126,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(521, 517);
+            this.button4.Location = new System.Drawing.Point(506, 496);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(139, 70);
             this.button4.TabIndex = 36;
@@ -161,7 +137,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(811, 517);
+            this.button2.Location = new System.Drawing.Point(796, 496);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(165, 70);
             this.button2.TabIndex = 35;
@@ -172,7 +148,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(376, 517);
+            this.button1.Location = new System.Drawing.Point(361, 496);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 70);
             this.button1.TabIndex = 34;
@@ -183,7 +159,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(120, 40);
+            this.label2.Location = new System.Drawing.Point(127, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 20);
             this.label2.TabIndex = 42;
@@ -192,7 +168,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(97, 76);
+            this.label3.Location = new System.Drawing.Point(104, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 44;
@@ -201,7 +177,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 117);
+            this.label4.Location = new System.Drawing.Point(58, 122);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(141, 20);
             this.label4.TabIndex = 46;
@@ -210,7 +186,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(63, 159);
+            this.label5.Location = new System.Drawing.Point(70, 164);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 20);
             this.label5.TabIndex = 48;
@@ -219,7 +195,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(63, 202);
+            this.label6.Location = new System.Drawing.Point(70, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(121, 20);
             this.label6.TabIndex = 50;
@@ -228,7 +204,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(63, 242);
+            this.label7.Location = new System.Drawing.Point(70, 247);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 20);
             this.label7.TabIndex = 52;
@@ -236,7 +212,7 @@
             // 
             // shipViaTextBox
             // 
-            this.shipViaTextBox.Location = new System.Drawing.Point(198, 242);
+            this.shipViaTextBox.Location = new System.Drawing.Point(205, 247);
             this.shipViaTextBox.Name = "shipViaTextBox";
             this.shipViaTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipViaTextBox.TabIndex = 53;
@@ -244,7 +220,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(63, 278);
+            this.label8.Location = new System.Drawing.Point(70, 283);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 20);
             this.label8.TabIndex = 54;
@@ -252,7 +228,7 @@
             // 
             // freightTextBox
             // 
-            this.freightTextBox.Location = new System.Drawing.Point(198, 278);
+            this.freightTextBox.Location = new System.Drawing.Point(205, 283);
             this.freightTextBox.Name = "freightTextBox";
             this.freightTextBox.Size = new System.Drawing.Size(122, 26);
             this.freightTextBox.TabIndex = 55;
@@ -260,7 +236,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(54, 317);
+            this.label9.Location = new System.Drawing.Point(61, 322);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(138, 20);
             this.label9.TabIndex = 56;
@@ -268,7 +244,7 @@
             // 
             // shipNameTextBox
             // 
-            this.shipNameTextBox.Location = new System.Drawing.Point(198, 317);
+            this.shipNameTextBox.Location = new System.Drawing.Point(205, 322);
             this.shipNameTextBox.Name = "shipNameTextBox";
             this.shipNameTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipNameTextBox.TabIndex = 57;
@@ -277,7 +253,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(50, 361);
+            this.label10.Location = new System.Drawing.Point(57, 366);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(142, 20);
             this.label10.TabIndex = 58;
@@ -285,7 +261,7 @@
             // 
             // shipAddressTextBox
             // 
-            this.shipAddressTextBox.Location = new System.Drawing.Point(198, 361);
+            this.shipAddressTextBox.Location = new System.Drawing.Point(205, 366);
             this.shipAddressTextBox.Name = "shipAddressTextBox";
             this.shipAddressTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipAddressTextBox.TabIndex = 59;
@@ -294,7 +270,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(50, 403);
+            this.label11.Location = new System.Drawing.Point(57, 408);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(126, 20);
             this.label11.TabIndex = 60;
@@ -302,7 +278,7 @@
             // 
             // shipCityTextBox
             // 
-            this.shipCityTextBox.Location = new System.Drawing.Point(198, 403);
+            this.shipCityTextBox.Location = new System.Drawing.Point(205, 408);
             this.shipCityTextBox.Name = "shipCityTextBox";
             this.shipCityTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipCityTextBox.TabIndex = 61;
@@ -310,7 +286,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(49, 444);
+            this.label12.Location = new System.Drawing.Point(56, 449);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(127, 20);
             this.label12.TabIndex = 62;
@@ -318,7 +294,7 @@
             // 
             // shipRegionTextBox
             // 
-            this.shipRegionTextBox.Location = new System.Drawing.Point(198, 444);
+            this.shipRegionTextBox.Location = new System.Drawing.Point(205, 449);
             this.shipRegionTextBox.Name = "shipRegionTextBox";
             this.shipRegionTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipRegionTextBox.TabIndex = 63;
@@ -327,7 +303,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 486);
+            this.label13.Location = new System.Drawing.Point(19, 491);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(176, 20);
             this.label13.TabIndex = 64;
@@ -335,7 +311,7 @@
             // 
             // shipPostalCodeTextBox
             // 
-            this.shipPostalCodeTextBox.Location = new System.Drawing.Point(198, 486);
+            this.shipPostalCodeTextBox.Location = new System.Drawing.Point(205, 491);
             this.shipPostalCodeTextBox.Name = "shipPostalCodeTextBox";
             this.shipPostalCodeTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipPostalCodeTextBox.TabIndex = 65;
@@ -343,7 +319,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(67, 527);
+            this.label14.Location = new System.Drawing.Point(74, 532);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(109, 20);
             this.label14.TabIndex = 66;
@@ -351,28 +327,28 @@
             // 
             // shipCountryTextBox
             // 
-            this.shipCountryTextBox.Location = new System.Drawing.Point(198, 527);
+            this.shipCountryTextBox.Location = new System.Drawing.Point(205, 532);
             this.shipCountryTextBox.Name = "shipCountryTextBox";
             this.shipCountryTextBox.Size = new System.Drawing.Size(122, 26);
             this.shipCountryTextBox.TabIndex = 67;
             // 
             // orderDateTimePicker1
             // 
-            this.orderDateTimePicker1.Location = new System.Drawing.Point(198, 117);
+            this.orderDateTimePicker1.Location = new System.Drawing.Point(205, 122);
             this.orderDateTimePicker1.Name = "orderDateTimePicker1";
             this.orderDateTimePicker1.Size = new System.Drawing.Size(126, 26);
             this.orderDateTimePicker1.TabIndex = 68;
             // 
             // requiredDateTimePicker2
             // 
-            this.requiredDateTimePicker2.Location = new System.Drawing.Point(198, 159);
+            this.requiredDateTimePicker2.Location = new System.Drawing.Point(205, 164);
             this.requiredDateTimePicker2.Name = "requiredDateTimePicker2";
             this.requiredDateTimePicker2.Size = new System.Drawing.Size(126, 26);
             this.requiredDateTimePicker2.TabIndex = 69;
             // 
             // shippedDateTimePicker3
             // 
-            this.shippedDateTimePicker3.Location = new System.Drawing.Point(198, 200);
+            this.shippedDateTimePicker3.Location = new System.Drawing.Point(205, 205);
             this.shippedDateTimePicker3.Name = "shippedDateTimePicker3";
             this.shippedDateTimePicker3.Size = new System.Drawing.Size(126, 26);
             this.shippedDateTimePicker3.TabIndex = 70;
@@ -380,7 +356,7 @@
             // customerIdComboBox
             // 
             this.customerIdComboBox.FormattingEnabled = true;
-            this.customerIdComboBox.Location = new System.Drawing.Point(202, 42);
+            this.customerIdComboBox.Location = new System.Drawing.Point(209, 47);
             this.customerIdComboBox.Name = "customerIdComboBox";
             this.customerIdComboBox.Size = new System.Drawing.Size(122, 28);
             this.customerIdComboBox.TabIndex = 73;
@@ -403,7 +379,7 @@
             // employeeIdComboBox
             // 
             this.employeeIdComboBox.FormattingEnabled = true;
-            this.employeeIdComboBox.Location = new System.Drawing.Point(202, 79);
+            this.employeeIdComboBox.Location = new System.Drawing.Point(209, 84);
             this.employeeIdComboBox.Name = "employeeIdComboBox";
             this.employeeIdComboBox.Size = new System.Drawing.Size(122, 28);
             this.employeeIdComboBox.TabIndex = 74;
@@ -415,12 +391,44 @@
             this.northwindDataSetBindingSource.DataSource = this.northwindDataSet;
             this.northwindDataSetBindingSource.Position = 0;
             // 
+            // ordersDataGridView
+            // 
+            this.ordersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ordersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OrderIdColumn1,
+            this.CustomerIdColumn1,
+            this.EmployeeIdColumn1,
+            this.OrderDateColumn1,
+            this.RequiredDateColumn1,
+            this.ShippedDateColumn1,
+            this.ShipViaColumn1,
+            this.FreightColumn1,
+            this.ShipNameColumn1,
+            this.ShipAddressColumn1,
+            this.ShipCityColumn1,
+            this.ShipCountryColumn1,
+            this.ShipRegionColumn1,
+            this.ShipPostalCodeColumn1,
+            this.ProductIdColumn1,
+            this.UnitPriceColumn1,
+            this.QuantityColumn1,
+            this.DiscountColumn1});
+            this.ordersDataGridView.Location = new System.Drawing.Point(361, 47);
+            this.ordersDataGridView.Name = "ordersDataGridView";
+            this.ordersDataGridView.RowHeadersWidth = 62;
+            this.ordersDataGridView.RowTemplate.Height = 28;
+            this.ordersDataGridView.Size = new System.Drawing.Size(890, 443);
+            this.ordersDataGridView.TabIndex = 0;
+            this.ordersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellClick);
+            this.ordersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellContentClick);
+            // 
             // OrderIdColumn1
             // 
             this.OrderIdColumn1.DataPropertyName = "OrderId";
             this.OrderIdColumn1.HeaderText = "ID orden";
             this.OrderIdColumn1.MinimumWidth = 8;
             this.OrderIdColumn1.Name = "OrderIdColumn1";
+            this.OrderIdColumn1.Visible = false;
             this.OrderIdColumn1.Width = 150;
             // 
             // CustomerIdColumn1
@@ -527,12 +535,44 @@
             this.ShipPostalCodeColumn1.Name = "ShipPostalCodeColumn1";
             this.ShipPostalCodeColumn1.Width = 150;
             // 
+            // ProductIdColumn1
+            // 
+            this.ProductIdColumn1.DataPropertyName = "ProductID";
+            this.ProductIdColumn1.HeaderText = "ID producto";
+            this.ProductIdColumn1.MinimumWidth = 8;
+            this.ProductIdColumn1.Name = "ProductIdColumn1";
+            this.ProductIdColumn1.Width = 150;
+            // 
+            // UnitPriceColumn1
+            // 
+            this.UnitPriceColumn1.DataPropertyName = "UnitPrice";
+            this.UnitPriceColumn1.HeaderText = "Precio unitario";
+            this.UnitPriceColumn1.MinimumWidth = 8;
+            this.UnitPriceColumn1.Name = "UnitPriceColumn1";
+            this.UnitPriceColumn1.Width = 150;
+            // 
+            // QuantityColumn1
+            // 
+            this.QuantityColumn1.DataPropertyName = "Quantity";
+            this.QuantityColumn1.HeaderText = "Cantidad";
+            this.QuantityColumn1.MinimumWidth = 8;
+            this.QuantityColumn1.Name = "QuantityColumn1";
+            this.QuantityColumn1.Width = 150;
+            // 
+            // DiscountColumn1
+            // 
+            this.DiscountColumn1.DataPropertyName = "Discount";
+            this.DiscountColumn1.HeaderText = "Descuento";
+            this.DiscountColumn1.MinimumWidth = 8;
+            this.DiscountColumn1.Name = "DiscountColumn1";
+            this.DiscountColumn1.Width = 150;
+            // 
             // Ordenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1315, 599);
+            this.ClientSize = new System.Drawing.Size(1359, 589);
             this.Controls.Add(this.employeeIdComboBox);
             this.Controls.Add(this.customerIdComboBox);
             this.Controls.Add(this.shippedDateTimePicker3);
@@ -570,18 +610,16 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ordenes";
             this.Load += new System.EventHandler(this.Ordenes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView ordersDataGridView;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
@@ -618,6 +656,7 @@
         private NorthwindDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         private System.Windows.Forms.ComboBox employeeIdComboBox;
         private System.Windows.Forms.BindingSource northwindDataSetBindingSource;
+        private System.Windows.Forms.DataGridView ordersDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderIdColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerIdColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeIdColumn1;
@@ -632,5 +671,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ShipCountryColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShipRegionColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShipPostalCodeColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductIdColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPriceColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiscountColumn1;
     }
 }

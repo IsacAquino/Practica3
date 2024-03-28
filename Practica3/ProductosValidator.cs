@@ -12,9 +12,7 @@ namespace Practica3
     {
         public ProductsValidator() 
         { 
-            RuleFor(a => a.ProductName).NotEmpty().MaximumLength(40);
-            RuleFor(a => a.SupplierId).NotEmpty();
-            RuleFor(a => a.CategoryId).NotEmpty();
+            RuleFor(a => a.ProductName).NotEmpty().MaximumLength(40); 
             RuleFor(a => a.QuantityPerUnit).NotEmpty().MaximumLength(20);
             RuleFor(a => a.UnitPrice).NotEmpty();
             RuleFor(a => a.UnitsInStock).NotEmpty();

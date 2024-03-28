@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.CategoriesDataGridView = new System.Windows.Forms.DataGridView();
-            this.CategoryNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescriptionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.categoryNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,6 +41,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.picturePictureBox = new System.Windows.Forms.PictureBox();
+            this.CategoryIdColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryNameColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptionColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.CategoriesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picturePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             this.CategoriesDataGridView.AllowUserToDeleteRows = false;
             this.CategoriesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CategoriesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CategoryIdColumn1,
             this.CategoryNameColumn1,
             this.DescriptionColumn1});
             this.CategoriesDataGridView.Location = new System.Drawing.Point(353, 32);
@@ -65,24 +67,6 @@
             this.CategoriesDataGridView.Size = new System.Drawing.Size(858, 330);
             this.CategoriesDataGridView.TabIndex = 0;
             this.CategoriesDataGridView.Visible = false;
-            // 
-            // CategoryNameColumn1
-            // 
-            this.CategoryNameColumn1.DataPropertyName = "CategoryName";
-            this.CategoryNameColumn1.HeaderText = "CategoryName";
-            this.CategoryNameColumn1.MinimumWidth = 8;
-            this.CategoryNameColumn1.Name = "CategoryNameColumn1";
-            this.CategoryNameColumn1.ReadOnly = true;
-            this.CategoryNameColumn1.Width = 150;
-            // 
-            // DescriptionColumn1
-            // 
-            this.DescriptionColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DescriptionColumn1.DataPropertyName = "Description";
-            this.DescriptionColumn1.HeaderText = "Description";
-            this.DescriptionColumn1.MinimumWidth = 8;
-            this.DescriptionColumn1.Name = "DescriptionColumn1";
-            this.DescriptionColumn1.ReadOnly = true;
             // 
             // label1
             // 
@@ -99,6 +83,7 @@
             this.categoryNameTextBox.Name = "categoryNameTextBox";
             this.categoryNameTextBox.Size = new System.Drawing.Size(100, 26);
             this.categoryNameTextBox.TabIndex = 2;
+            this.categoryNameTextBox.TextChanged += new System.EventHandler(this.categoryNameTextBox_TextChanged);
             // 
             // label2
             // 
@@ -201,6 +186,34 @@
             this.picturePictureBox.TabStop = false;
             this.picturePictureBox.Visible = false;
             // 
+            // CategoryIdColumn1
+            // 
+            this.CategoryIdColumn1.DataPropertyName = "CategoryID";
+            this.CategoryIdColumn1.HeaderText = "ID categoria";
+            this.CategoryIdColumn1.MinimumWidth = 8;
+            this.CategoryIdColumn1.Name = "CategoryIdColumn1";
+            this.CategoryIdColumn1.ReadOnly = true;
+            this.CategoryIdColumn1.Visible = false;
+            this.CategoryIdColumn1.Width = 150;
+            // 
+            // CategoryNameColumn1
+            // 
+            this.CategoryNameColumn1.DataPropertyName = "CategoryName";
+            this.CategoryNameColumn1.HeaderText = "CategoryName";
+            this.CategoryNameColumn1.MinimumWidth = 8;
+            this.CategoryNameColumn1.Name = "CategoryNameColumn1";
+            this.CategoryNameColumn1.ReadOnly = true;
+            this.CategoryNameColumn1.Width = 150;
+            // 
+            // DescriptionColumn1
+            // 
+            this.DescriptionColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DescriptionColumn1.DataPropertyName = "Description";
+            this.DescriptionColumn1.HeaderText = "Description";
+            this.DescriptionColumn1.MinimumWidth = 8;
+            this.DescriptionColumn1.Name = "DescriptionColumn1";
+            this.DescriptionColumn1.ReadOnly = true;
+            // 
             // Categorias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -246,6 +259,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryIdColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryNameColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionColumn1;
     }

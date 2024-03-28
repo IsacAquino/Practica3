@@ -66,37 +66,33 @@ namespace Practica3
                 int orderId;
                 if (int.TryParse(OrderIdComboBox.Text, out orderId))
                 {
-                    // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+
                     orderDetails.OrderId = orderId;
                 }
                 int productId;
                 if (int.TryParse(ProductIdComboBox.Text, out productId))
                 {
-                    // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+
                     orderDetails.ProductId = productId;
                 }
                 decimal unitPrice;
                 if (decimal.TryParse(unitPriceTextBox.Text, out unitPrice))
                 {
-                    // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+
                     orderDetails.UnitPrice = unitPrice;
                 }
                 Int16 quantity;
                 if (Int16.TryParse(quantityTextBox.Text, out quantity))
                 {
-                    // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+
                     orderDetails.Quantity = quantity;
                 }
                 Single discount;
                 if (Single.TryParse(discountTextBox.Text, out discount))
                 {
-                    // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+
                     orderDetails.Discount = discount;
                 }
-
-
-
-
 
                 var validationResult = _orderDetailsValidator
                     .Validate(orderDetails);
@@ -105,7 +101,7 @@ namespace Practica3
                 {
                     _northwindContext.OrderDetails.Add(orderDetails);
                     _northwindContext.SaveChanges();
-                    MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Orden detalle insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadOrderDetails();
 
                 }
@@ -136,7 +132,6 @@ namespace Practica3
             }
 
 
-
         }
 
         private void orderDetailsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -150,22 +145,12 @@ namespace Practica3
 
         private void ProductIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (ProductIdComboBox.SelectedItem != null)
-            //{
-
-            //    var selectedEmployee = (OrderDetails)ProductIdComboBox.SelectedItem;
-
-
-            //    int selectedEmployeeId = selectedEmployee.ProductId;
-
-            //}
-
             if (ProductIdComboBox.SelectedItem != null)
             {
                 int selectedProductId;
                 if (int.TryParse(ProductIdComboBox.SelectedItem.ToString(), out selectedProductId))
                 {
-                    // Usa selectedProductId según tus necesidades
+                    
                 }
             }
         }
@@ -191,6 +176,61 @@ namespace Practica3
                 //e.Graphics.DrawString(text, e.Font, brush, e.Bounds);
             }
             e.DrawFocusRectangle();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (orderDetailsDataGridView.SelectedRows.Count > 0)
+            {
+                // Obtener el valor de la clave primaria de la fila seleccionada
+                int orderId = Convert.ToInt32(orderDetailsDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
+
+                // Obtener el producto a modificar
+                var productToUpdate = _northwindContext.Products.Find(orderId);
+                if (productToUpdate != null)
+                {
+                    // Actualizar las propiedades del producto con los valores de los TextBox
+                    var orderDetails = new OrderDetails();
+                    int productId;
+                    if (int.TryParse(ProductIdComboBox.Text, out productId))
+                    {
+                        // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+                        orderDetails.ProductId = productId;
+                    }
+                    decimal unitPrice;
+                    if (decimal.TryParse(unitPriceTextBox.Text, out unitPrice))
+                    {
+                        // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+                        orderDetails.UnitPrice = unitPrice;
+                    }
+                    Int16 quantity;
+                    if (Int16.TryParse(quantityTextBox.Text, out quantity))
+                    {
+                        // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+                        orderDetails.Quantity = quantity;
+                    }
+                    Single discount;
+                    if (Single.TryParse(discountTextBox.Text, out discount))
+                    {
+                        // La conversión fue exitosa, puedes asignar supplierId a products.SupplierId
+                        orderDetails.Discount = discount;
+                    }
+
+
+                    // Guardar los cambios en la base de datos
+                    _northwindContext.SaveChanges();
+                    LoadOrderDetails();
+                    MessageBox.Show("Orden detalle actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Orden detalle no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una orden detalle para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

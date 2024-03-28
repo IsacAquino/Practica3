@@ -40,48 +40,115 @@ namespace Practica3
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    var suppliers = new Suppliers();
+            //    suppliers.CompanyName = companyNameTextBox.Text;
+            //    suppliers.ContactName = contactNameTextBox.Text;
+            //    suppliers.ContactTitle = contactTitleTextBox.Text;
+            //    suppliers.Address = AddressTextBox.Text;
+            //    suppliers.City = cityTextBox.Text;
+            //    suppliers.Region = regionTextBox.Text;
+            //    suppliers.PostalCode = postalCodeTextBox.Text;
+            //    suppliers.Country = countryTextBox.Text;
+            //    suppliers.Phone = phoneTextBox.Text;
+            //    suppliers.Fax = faxTextBox.Text;
+            //    suppliers.HomePage = homePageTextBox.Text;
+
+            //    var validationResult = _suppliersValidator
+            //        .Validate(suppliers);
+
+            //    if (validationResult.IsValid)
+            //    {
+            //        _northwindContext.Suppliers.Add(suppliers);
+            //        _northwindContext.SaveChanges();
+            //        MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        LoadSuppliers();
+
+            //    }
+            //    else
+            //    {
+            //        try
+            //        {
+            //            throw new ApplicationException("Some Error");
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
+            //            Log.Error(ex, ex.Message);
+            //        }
+            //        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+            //        MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            //    }
+
+            //companyNameTextBox.Clear();
+            //contactTitleTextBox.Clear();
+            //AddressTextBox.Clear();
+            //cityTextBox.Clear();
+            //regionTextBox.Clear();
+            //postalCodeTextBox.Clear();
+            //countryTextBox.Clear();
+            //phoneTextBox.Clear();
+            //faxTextBox.Clear();
+            //homePageTextBox.Clear();
+
+
+            //}
+
+
+
+
+
+            //catch (DbUpdateException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error saving products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
             try
             {
-                var suppliers = new Suppliers();
-                suppliers.CompanyName = companyNameTextBox.Text;
-                suppliers.ContactName = contactNameTextBox.Text;
-                suppliers.ContactTitle= contactTitleTextBox.Text;
-                suppliers.Address = AddressTextBox.Text;
-                suppliers.City = cityTextBox.Text;
-                suppliers.Region = regionTextBox.Text;
-                suppliers.PostalCode = postalCodeTextBox.Text;
-                suppliers.Country = countryTextBox.Text;
-                suppliers.Phone = phoneTextBox.Text;
-                suppliers.Fax = faxTextBox.Text;
-                suppliers.HomePage = homePageTextBox.Text;
+                var companyName = companyNameTextBox.Text;
 
-                var validationResult = _suppliersValidator
-                    .Validate(suppliers);
+                var existingSupplier = _northwindContext.Suppliers.FirstOrDefault(s => s.CompanyName == companyName);
+
+                if (existingSupplier != null)
+                {
+                    MessageBox.Show("El suplidor ya está registrado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var supplier = new Suppliers
+                {
+                    CompanyName = companyName,
+                    ContactName = contactNameTextBox.Text,
+                    ContactTitle = contactTitleTextBox.Text,
+                    Address = AddressTextBox.Text,
+                    City = cityTextBox.Text,
+                    Region = regionTextBox.Text,
+                    PostalCode = postalCodeTextBox.Text,
+                    Country = countryTextBox.Text,
+                    Phone = phoneTextBox.Text,
+                    Fax = faxTextBox.Text,
+                    HomePage = homePageTextBox.Text
+                };
+
+                var validationResult = _suppliersValidator.Validate(supplier);
 
                 if (validationResult.IsValid)
                 {
-                    _northwindContext.Suppliers.Add(suppliers);
+                    _northwindContext.Suppliers.Add(supplier);
                     _northwindContext.SaveChanges();
                     MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadSuppliers();
-
                 }
                 else
                 {
-                    try
-                    {
-                        throw new ApplicationException("Some Error");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
-                        Log.Error(ex, ex.Message);
-                    }
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-                    MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
+                // Limpiar los campos de entrada después de la inserción exitosa
                 companyNameTextBox.Clear();
+                contactNameTextBox.Clear();
                 contactTitleTextBox.Clear();
                 AddressTextBox.Clear();
                 cityTextBox.Clear();
@@ -91,18 +158,15 @@ namespace Practica3
                 phoneTextBox.Clear();
                 faxTextBox.Clear();
                 homePageTextBox.Clear();
-
-
-            }   
-
-
-
-            
-
+            }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.Message, "Error saving products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error al guardar suplidores", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -216,17 +280,27 @@ namespace Practica3
             {
                 if (SuppliersDataGridView.SelectedRows.Count > 0)
                 {
-                    // Obtener el valor de la clave primaria de la fila seleccionada
                     int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
-
-                    // Buscar el producto por su clave primaria
                     var supplierToDelete = _northwindContext.Suppliers.Find(supplierId);
                     if (supplierToDelete != null)
                     {
-                        _northwindContext.Suppliers.Remove(supplierToDelete);
-                        _northwindContext.SaveChanges();
-                        LoadSuppliers();
-                        MessageBox.Show("Suplidor eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Verificar si el producto tiene referencias en otras tablas
+                        bool hasReferences = _northwindContext.Products.Any(od => od.SupplierId== supplierId);
+
+                        if (!hasReferences)
+                        {
+                            _northwindContext.Suppliers.Remove(supplierToDelete);
+                            _northwindContext.SaveChanges();
+
+                            // Refrescar todo el formulario
+                            LoadSuppliers();
+
+                            MessageBox.Show("Suplidor eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Este suplidor tiene referencias en otras tablas y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -240,9 +314,8 @@ namespace Practica3
             }
             catch (DbUpdateException ex)
             {
-
-                MessageBox.Show("Error al eliminar el producto: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("Error al eliminar el suplidor: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadSuppliers();
             }
         }
     }

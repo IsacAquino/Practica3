@@ -1,53 +1,43 @@
-﻿using Dapper;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
 using Practica3.Data;
 using Practica3.Models;
-using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
-using System.Net;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static TheArtOfDev.HtmlRenderer.Adapters.RGraphicsPath;
 
 namespace Practica3
 {
-    public partial class Ordenes : Form
+    public partial class OrdenesPrincipales : Form
     {
+
         private readonly NorthwindContext _northwindContext;
         private readonly IValidator<Orders> _ordersValidator;
         private readonly IValidator<OrderDetails> _ordersDetailsValidator;
-        private readonly IConfiguration _configuration;
-        public Ordenes(NorthwindContext northwindContext, IConfiguration configuration, IValidator<Orders> ordersValidator, IValidator<OrderDetails> ordersDetailsValidator)
+        public OrdenesPrincipales(NorthwindContext northwindContext, IValidator<Orders> ordersValidator, IValidator<OrderDetails> ordersDetailsValidator)
         {
             InitializeComponent();
-            _configuration = configuration;
             this._northwindContext = northwindContext;
+            ordersDataGridView.AutoGenerateColumns = false;
             this._ordersValidator = ordersValidator;
             this._ordersDetailsValidator = ordersDetailsValidator;
-            ordersDataGridView.AutoGenerateColumns = false;
-            customerIdComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            employeeIdComboBox.SelectedIndexChanged += employeeIdComboBox_SelectedIndexChanged;
-            employeeIdComboBox.DrawItem += employeeIdComboBox_DrawItem;
-
         }
 
-        private void Ordenes_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-
-
             var clientes = _northwindContext.Customers.Select(c => c.CustomerId).ToList();
             customerIdComboBox.DataSource = clientes;
+
+            var producto = _northwindContext.Products.Select(c => c.ProductId).ToList();
+            ProductIdcomboBox.DataSource = producto;
 
             var empleados = _northwindContext.Employees.ToList();
             employeeIdComboBox.DataSource = empleados;
@@ -55,19 +45,16 @@ namespace Practica3
             employeeIdComboBox.ValueMember = "EmployeeId";
 
             LoadOrders();
-
         }
-
-       
-
-
 
         private void LoadOrders()
         {
-            //ordersDataGridView.DataSource = _northwindContext.Orders.Include(o=>o.OrderDetails).ToList();
             var orders = _northwindContext.Orders.ToList();
+
+            // Obtener todos los detalles de las órdenes
             var orderDetails = _northwindContext.OrderDetails.ToList();
 
+            // Unir manualmente los detalles de la orden a las órdenes principales
             var combinedData = new List<object>();
             foreach (var order in orders)
             {
@@ -97,23 +84,13 @@ namespace Practica3
                 }
             }
 
+            // Asignar los datos combinados al DataGridView
             ordersDataGridView.DataSource = combinedData;
         }
 
-
-        private class OrdenWithDetails
-        {
-            public int OrderId { get; set; }
-            public string CustomerId { get; set; }
-            public int EmployeeId { get; set; }
-            public DateTime OrderDate { get; set; }
-            public int ProductId { get; set; }
-            public decimal UnitPrice { get; set; }
-            public int Quantity { get; set; }
-            public float Discount { get; set; }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 // Verificar si algún control de entrada está vacío, lo que indica que el usuario está intentando insertar una nueva orden
@@ -128,44 +105,51 @@ namespace Practica3
                     string.IsNullOrWhiteSpace(shipPostalCodeTextBox.Text) ||
                     string.IsNullOrWhiteSpace(shipCountryTextBox.Text))
                 {
-                    // Si alguno de los campos está vacío, proceder con la inserción de la orden
-                    var orders = new Orders();
+                    // Crear una nueva orden
+                    var newOrder = new Orders
+                    {
+                        CustomerId = customerIdComboBox.Text,
+                        // Obtener el ID del empleado seleccionado
+                        EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue),
+                        OrderDate = orderDateTimePicker1.Value,
+                        RequiredDate = requiredDateTimePicker2.Value,
+                        ShippedDate = shippedDateTimePicker3.Value,
+                        ShipVia = Convert.ToInt32(shipViaTextBox.Text),
+                        Freight = Convert.ToDecimal(freightTextBox.Text),
+                        ShipName = shipNameTextBox.Text,
+                        ShipAddress = shipAddressTextBox.Text,
+                        ShipCity = shipCityTextBox.Text,
+                        ShipRegion = shipRegionTextBox.Text,
+                        ShipPostalCode = shipPostalCodeTextBox.Text,
+                        ShipCountry = shipCountryTextBox.Text
+                    };
 
-                    orders.CustomerId = customerIdComboBox.Text;
-                    // Obtener el ID del empleado seleccionado
-                    if (employeeIdComboBox.SelectedItem != null)
-                    {
-                        orders.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
-                    }
-                    orders.OrderDate = orderDateTimePicker1.Value;
-                    orders.RequiredDate = requiredDateTimePicker2.Value;
-                    orders.ShippedDate = shippedDateTimePicker3.Value;
-                    int shipVia;
-                    if (int.TryParse(shipViaTextBox.Text, out shipVia))
-                    {
-                        orders.ShipVia = shipVia;
-                    }
-                    decimal freight;
-                    if (decimal.TryParse(freightTextBox.Text, out freight))
-                    {
-                        orders.Freight = freight;
-                    }
-                    orders.ShipName = shipNameTextBox.Text;
-                    orders.ShipAddress = shipAddressTextBox.Text;
-                    orders.ShipCity = shipCityTextBox.Text;
-                    orders.ShipRegion = shipRegionTextBox.Text;
-                    orders.ShipPostalCode = shipPostalCodeTextBox.Text;
-                    orders.ShipCountry = shipCountryTextBox.Text;
-
-                    var validationResult = _ordersValidator.Validate(orders);
+                    // Validar la nueva orden
+                    var validationResult = _ordersValidator.Validate(newOrder);
 
                     if (validationResult.IsValid)
                     {
                         // Agregar la nueva orden al contexto de base de datos
-                        _northwindContext.Orders.Add(orders);
+                        _northwindContext.Orders.Add(newOrder);
                         _northwindContext.SaveChanges();
-                        MessageBox.Show("Orden insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Insertar los detalles de la orden
+                        var newOrderDetails = new OrderDetails
+                        {
+                            OrderId = newOrder.OrderId, // Usar el ID de la orden recién insertada
+                            ProductId = Convert.ToInt32(ProductIdcomboBox.SelectedValue),
+                            UnitPrice = Convert.ToDecimal(UnitPriceTextBox.Text),
+                            Quantity = Convert.ToInt16(QuantityTextBox.Text),
+                            Discount = Convert.ToSingle(DiscountTextBox.Text)
+                        };
+
+                        // Agregar los detalles de la orden al contexto de base de datos
+                        _northwindContext.OrderDetails.Add(newOrderDetails);
+                        _northwindContext.SaveChanges();
+
+                        MessageBox.Show("Orden y detalles insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadOrders();
+                        ClearOrderFormFields();
                     }
                     else
                     {
@@ -175,7 +159,7 @@ namespace Practica3
                     }
 
                     // Limpiar los campos del formulario después de la inserción
-                    ClearOrderFormFields();
+                    //ClearOrderFormFields();
                 }
                 else
                 {
@@ -207,6 +191,10 @@ namespace Practica3
             shipRegionTextBox.Clear();
             shipPostalCodeTextBox.Clear();
             shipCountryTextBox.Clear();
+            ProductIdcomboBox.SelectedIndex = -1;
+            UnitPriceTextBox.Clear();
+            QuantityTextBox.Clear();
+            DiscountTextBox.Clear();
 
             LoadOrders();
         }
@@ -405,7 +393,7 @@ namespace Practica3
                             ClearOrderFormFields();
 
                             MessageBox.Show("Orden eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
+
 
                         }
                         else
@@ -476,12 +464,229 @@ namespace Practica3
             e.DrawFocusRectangle();
         }
 
-
-
-        private void ordersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void customerIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void QuantityTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ordersDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            customerIdComboBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["CustomerIdColumn1"].Value);
+            employeeIdComboBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["EmployeeIdColumn1"].Value);
+            orderDateTimePicker1.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["OrderDateColumn1"].Value);
+            requiredDateTimePicker2.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["RequiredDateColumn1"].Value);
+            shippedDateTimePicker3.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShippedDateColumn1"].Value);
+            shipViaTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipViaColumn1"].Value);
+            freightTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["FreightColumn1"].Value);
+            shipNameTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipNameColumn1"].Value);
+            shipAddressTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipAddressColumn1"].Value);
+            shipCityTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipCityColumn1"].Value);
+            shipRegionTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipRegionColumn1"].Value);
+            shipPostalCodeTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipPostalCodeColumn1"].Value);
+            shipCountryTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ShipCountryColumn1"].Value);
+            ProductIdcomboBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["ProductIdColumn1"].Value);
+            UnitPriceTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["UnitPriceColumn1"].Value);
+            QuantityTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["QuantityColumn1"].Value);
+            DiscountTextBox.Text = Convert.ToString(ordersDataGridView.CurrentRow.Cells["DiscountColumn1"].Value);
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            customerIdComboBox.SelectedIndex = -1;
+            employeeIdComboBox.SelectedIndex = -1;
+            orderDateTimePicker1.Value = DateTime.Today;
+            requiredDateTimePicker2.Value = DateTime.Today;
+            shippedDateTimePicker3.Value = DateTime.Today;
+            shipViaTextBox.Clear();
+            freightTextBox.Clear();
+            shipNameTextBox.Clear();
+            shipAddressTextBox.Clear();
+            shipCityTextBox.Clear();
+            shipRegionTextBox.Clear();
+            shipPostalCodeTextBox.Clear();
+            shipCountryTextBox.Clear();
+            ProductIdcomboBox.SelectedIndex = -1;
+            UnitPriceTextBox.Clear();
+            QuantityTextBox.Clear();
+            DiscountTextBox.Clear();
+
+            LoadOrders();
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                var combinedData = (from order in _northwindContext.Orders
+                                    join detail in _northwindContext.OrderDetails on order.OrderId equals detail.OrderId
+                                    select new
+                                    {
+                                        order.OrderId,
+                                        order.CustomerId,
+                                        order.EmployeeId,
+                                        order.OrderDate,
+                                        order.RequiredDate,
+                                        order.ShippedDate,
+                                        order.ShipVia,
+                                        order.Freight,
+                                        order.ShipName,
+                                        order.ShipAddress,
+                                        order.ShipCity,
+                                        order.ShipRegion,
+                                        order.ShipPostalCode,
+                                        order.ShipCountry,
+                                        detail.ProductId,
+                                        detail.UnitPrice,
+                                        detail.Quantity,
+                                        detail.Discount
+                                    }).ToList();
+
+                ordersDataGridView.DataSource = combinedData;
+                ordersDataGridView.Visible = true; // Establecer como visible después de cargar los datos
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ordersDataGridView.SelectedRows.Count > 0)
+                {
+                    int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
+
+                    // Buscar y eliminar los detalles de la orden asociados a la orden seleccionada
+                    var orderDetailsToDelete = _northwindContext.OrderDetails.Where(od => od.OrderId == orderId).ToList();
+                    _northwindContext.OrderDetails.RemoveRange(orderDetailsToDelete);
+
+                    // Eliminar la orden principal
+                    var orderToDelete = _northwindContext.Orders.Find(orderId);
+                    if (orderToDelete != null)
+                    {
+                        _northwindContext.Orders.Remove(orderToDelete);
+                        _northwindContext.SaveChanges();
+
+                        // Refrescar todo el formulario
+                        ClearOrderFormFields();
+
+                        MessageBox.Show("Orden y detalles eliminados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Orden no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione una orden para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Error al eliminar la orden: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearOrderFormFields(); // Refrescar todo el formulario incluso en caso de error
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {   
+            try
+            {
+                if (ordersDataGridView.SelectedRows.Count > 0)
+                {
+                    // Obtener el valor de la clave primaria de la fila seleccionada
+                    int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
+
+                    // Obtener la orden principal a modificar
+                    var orderToUpdate = _northwindContext.Orders.Find(orderId);
+                    if (orderToUpdate != null)
+                    {
+                        // Actualizar las propiedades de la orden principal con los valores de los controles
+                        orderToUpdate.CustomerId = customerIdComboBox.Text;
+
+                        // Obtener el ID del empleado seleccionado
+                        if (employeeIdComboBox.SelectedItem != null)
+                        {
+                            orderToUpdate.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
+                        }
+
+                        orderToUpdate.OrderDate = orderDateTimePicker1.Value;
+                        orderToUpdate.RequiredDate = requiredDateTimePicker2.Value;
+                        orderToUpdate.ShippedDate = shippedDateTimePicker3.Value;
+
+                        int shipVia;
+                        if (int.TryParse(shipViaTextBox.Text, out shipVia))
+                        {
+                            orderToUpdate.ShipVia = shipVia;
+                        }
+                        decimal freight;
+                        if (decimal.TryParse(freightTextBox.Text, out freight))
+                        {
+                            orderToUpdate.Freight = freight;
+                        }
+
+                        orderToUpdate.ShipName = shipNameTextBox.Text;
+                        orderToUpdate.ShipAddress = shipAddressTextBox.Text;
+                        orderToUpdate.ShipCity = shipCityTextBox.Text;
+                        orderToUpdate.ShipRegion = shipRegionTextBox.Text;
+                        orderToUpdate.ShipPostalCode = shipPostalCodeTextBox.Text;
+                        orderToUpdate.ShipCountry = shipCountryTextBox.Text;
+
+                        // Actualizar los detalles de la orden asociados a la orden principal
+                        foreach (var detail in orderToUpdate.OrderDetails)
+                        {
+                            // Aquí puedes actualizar las propiedades de los detalles de la orden según sea necesario
+                            // Por ejemplo:
+                             detail.ProductId = Convert.ToInt32(ProductIdcomboBox.SelectedValue);
+                             detail.UnitPrice = Convert.ToDecimal(UnitPriceTextBox.Text);
+                             detail.Quantity = Convert.ToInt16(QuantityTextBox.Text);
+                             detail.Discount = Convert.ToSingle(DiscountTextBox.Text);
+                        }
+
+                        // Guardar los cambios en la base de datos
+                        _northwindContext.SaveChanges();
+
+                        // Recargar los datos en el DataGridView
+                        LoadOrders();
+
+                        MessageBox.Show("Pedido actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pedido no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Error al actualizar la orden: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearOrderFormFields(); // Refrescar todo el formulario incluso en caso de error
+            }
+
+
+
+
 
         }
     }
 }
-

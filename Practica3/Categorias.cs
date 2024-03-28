@@ -41,22 +41,75 @@ namespace Practica3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var category = new Categories();
-            category.CategoryName = categoryNameTextBox.Text;
-            category.Description = descriptionTextBox.Text;
+            //var category = new Categories();
+            //category.CategoryName = categoryNameTextBox.Text;
+            //category.Description = descriptionTextBox.Text;
 
-            var validationResult = _categoriesValidator
-                    .Validate(category);
+            //var validationResult = _categoriesValidator
+            //        .Validate(category);
+
+            //try
+            //{
+            //    if (validationResult.IsValid)
+            //    {
+            //        _northwindContext.Categories.Add(category);
+            //        _northwindContext.SaveChanges();
+            //        MessageBox.Show("Categoria insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        LoadCategories();
+
+            //    }
+            //    else
+            //    {
+            //        try
+            //        {
+            //            throw new ApplicationException("Some Error");
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
+            //            Log.Error(ex, ex.Message);
+            //        }
+            //        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+            //        MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            //    }
+
+            //    categoryNameTextBox.Clear();
+            //    descriptionTextBox.Clear();
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error saving categories", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
             try
             {
+                var categoryName = categoryNameTextBox.Text;
+                var description = descriptionTextBox.Text;
+
+                // Verificar si la categoría ya existe en la base de datos
+                var existingCategory = _northwindContext.Categories.FirstOrDefault(c => c.CategoryName == categoryName);
+
+                if (existingCategory != null)
+                {
+                    MessageBox.Show("La categoría ya está registrada.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método sin insertar la categoría nuevamente
+                }
+
+                // Si la categoría no existe, proceder con la inserción
+                var category = new Categories
+                {
+                    CategoryName = categoryName,
+                    Description = description
+                };
+
+                var validationResult = _categoriesValidator.Validate(category);
+
                 if (validationResult.IsValid)
                 {
                     _northwindContext.Categories.Add(category);
                     _northwindContext.SaveChanges();
-                    MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Categoría insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadCategories();
-
                 }
                 else
                 {
@@ -66,11 +119,11 @@ namespace Practica3
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
+                        MessageBox.Show("Lo sentimos. Ocurrió un error inesperado. Intente más tarde.");
                         Log.Error(ex, ex.Message);
                     }
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-                    MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 categoryNameTextBox.Clear();
@@ -78,9 +131,8 @@ namespace Practica3
             }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.Message, "Error saving products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar la categoría: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
 
 
@@ -94,10 +146,10 @@ namespace Practica3
                 if (CategoriesDataGridView.SelectedRows.Count > 0)
                 {
                     // Obtener el nombre de la categoría de la fila seleccionada
-                    string categoryName = Convert.ToString(CategoriesDataGridView.SelectedRows[0].Cells["CategoryNameColumn1"].Value);
+                    int categoryId = Convert.ToInt32(CategoriesDataGridView.SelectedRows[0].Cells["CategoryIdColumn1"].Value);
 
                     // Buscar la categoría por su nombre
-                    var categoryToUpdate = _northwindContext.Categories.FirstOrDefault(c => c.CategoryName == categoryName);
+                    var categoryToUpdate = _northwindContext.Categories.Find(categoryId);
                     if (categoryToUpdate != null)
                     {
                         // Actualizar las propiedades de la categoría
@@ -188,69 +240,54 @@ namespace Practica3
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (CategoriesDataGridView.SelectedRows.Count > 0)
-            //    {
-            //        // Obtener el valor de la clave primaria de la fila seleccionada
-            //        int categoryId = Convert.ToInt32(CategoriesDataGridView.SelectedRows[0].Cells["CategoryId"].Value);
 
-            //        // Buscar el producto por su clave primaria
-            //        var categoryToDelete = _northwindContext.Categories.Find(categoryId);
-            //        if (categoryToDelete != null)
-            //        {
-            //            _northwindContext.Categories.Remove(categoryToDelete);
-            //            _northwindContext.SaveChanges();
-            //            LoadCategories();
-            //            MessageBox.Show("Producto eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Producto no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Por favor, seleccione un producto para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //}
-            //catch (DbUpdateException ex)
-            //{
-
-            //    MessageBox.Show("Error al eliminar el producto: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //}
             try
             {
                 if (CategoriesDataGridView.SelectedRows.Count > 0)
                 {
-                    // Obtener el nombre de la categoría de la fila seleccionada
-                    string categoryName = Convert.ToString(CategoriesDataGridView.SelectedRows[0].Cells["CategoryNameColumn1"].Value);
-
-                    // Buscar la categoría por su nombre
-                    var categoryToDelete = _northwindContext.Categories.FirstOrDefault(c => c.CategoryName == categoryName);
+                    int categoryId = Convert.ToInt32(CategoriesDataGridView.SelectedRows[0].Cells["CategoryIdColumn1"].Value);
+                    var categoryToDelete = _northwindContext.Categories.Find(categoryId);
                     if (categoryToDelete != null)
                     {
-                        // Eliminar la categoría encontrada
-                        _northwindContext.Categories.Remove(categoryToDelete);
-                        _northwindContext.SaveChanges();
-                        LoadCategories();
-                        MessageBox.Show("Categoría eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        bool hasReferences = _northwindContext.Products.Any(od => od.CategoryId == categoryId);
+
+                        if (!hasReferences)
+                        {
+                            _northwindContext.Categories.Remove(categoryToDelete);
+                            _northwindContext.SaveChanges();
+
+                            
+                            LoadCategories();
+
+                            MessageBox.Show("Categoria eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Esta categoria tiene referencias en otras tablas y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Categoría no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Categoria no encontrada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Por favor, seleccione una categoría para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor, seleccione un producto para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show("Error al eliminar la categoría: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar la categoria: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadCategories();
             }
+
+        }
+
+        private void categoryNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
