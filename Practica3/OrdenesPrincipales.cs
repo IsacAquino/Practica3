@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Practica3.Data;
 using Practica3.Models;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -163,8 +164,11 @@ namespace Practica3
                             _northwindContext.SaveChanges();
 
                             MessageBox.Show("Orden y detalles insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            
                             LoadOrders();
                             ClearOrderFormFields();
+                            Log.Information("Orden insertada: ID: {OrderId}", orders.OrderId);
+
                         }
                         else
                         {
@@ -611,6 +615,7 @@ namespace Practica3
                         ClearOrderFormFields();
 
                         MessageBox.Show("Orden y detalles eliminados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Log.Information("Orden eliminada: ID {OrderId}", orderId);
                     }
                     else
                     {
@@ -705,6 +710,7 @@ namespace Practica3
                         ClearOrderFormFields();
 
                         MessageBox.Show("Pedido y detalles actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Log.Information("Orden actualizada: ID {OrderId}", orderId);
                     }
                     else
                     {

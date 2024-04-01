@@ -92,7 +92,7 @@
             this.SuppliersDataGridView.Name = "SuppliersDataGridView";
             this.SuppliersDataGridView.RowHeadersWidth = 62;
             this.SuppliersDataGridView.RowTemplate.Height = 28;
-            this.SuppliersDataGridView.Size = new System.Drawing.Size(882, 408);
+            this.SuppliersDataGridView.Size = new System.Drawing.Size(893, 408);
             this.SuppliersDataGridView.TabIndex = 17;
             this.SuppliersDataGridView.Visible = false;
             this.SuppliersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SuppliersDataGridView_CellClick);
@@ -196,8 +196,9 @@
             // 
             // button1
             // 
+            this.button1.AutoSize = true;
             this.button1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(404, 459);
+            this.button1.Location = new System.Drawing.Point(404, 472);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 70);
             this.button1.TabIndex = 11;
@@ -384,7 +385,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(549, 459);
+            this.button2.Location = new System.Drawing.Point(549, 472);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(141, 70);
             this.button2.TabIndex = 12;
@@ -395,7 +396,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(694, 459);
+            this.button3.Location = new System.Drawing.Point(694, 472);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(141, 70);
             this.button3.TabIndex = 13;
@@ -406,7 +407,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(839, 459);
+            this.button4.Location = new System.Drawing.Point(839, 472);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(153, 70);
             this.button4.TabIndex = 14;
@@ -417,9 +418,9 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(1145, 459);
+            this.button5.Location = new System.Drawing.Point(1145, 472);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 70);
+            this.button5.Size = new System.Drawing.Size(152, 70);
             this.button5.TabIndex = 16;
             this.button5.Text = "SALIR";
             this.button5.UseVisualStyleBackColor = true;
@@ -428,7 +429,7 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(998, 459);
+            this.button6.Location = new System.Drawing.Point(998, 472);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(141, 70);
             this.button6.TabIndex = 15;
@@ -440,8 +441,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1354, 554);
+            this.ClientSize = new System.Drawing.Size(1352, 557);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);

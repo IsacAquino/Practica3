@@ -76,9 +76,19 @@ namespace Practica3
                     _northwindContext.SaveChanges();
                     MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadSuppliers();
+                    Log.Information("Suplidor insertado: ID suplidor: {SupplierId}, nombre de contacto: {ContactName}", supplier.SupplierId, supplier.ContactName);
                 }
                 else
                 {
+                    try
+                    {
+                        throw new ApplicationException("Some Error");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lo sentimos. Ocurrió un error inesperado. Intente más tarde.");
+                        Log.Error(ex, ex.Message);
+                    }
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
                     MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -143,56 +153,131 @@ namespace Practica3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (SuppliersDataGridView.SelectedRows.Count > 0)
+            //try
+            //{
+            //    if (SuppliersDataGridView.SelectedRows.Count > 0)
+            //    {
+            //        // Obtener el valor de la clave primaria de la fila seleccionada
+            //        int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
+
+            //        // Obtener el producto a modificar
+            //        var supplierToUpdate = _northwindContext.Suppliers.Find(supplierId);
+            //        if (supplierToUpdate != null)
+            //        {
+
+
+            //            supplierToUpdate.CompanyName = companyNameTextBox.Text;
+            //            supplierToUpdate.ContactName = contactNameTextBox.Text;
+            //            supplierToUpdate.ContactTitle = contactTitleTextBox.Text;
+            //            supplierToUpdate.Address = AddressTextBox.Text;
+            //            supplierToUpdate.City = cityTextBox.Text;
+            //            supplierToUpdate.Region = regionTextBox.Text;
+            //            supplierToUpdate.PostalCode = postalCodeTextBox.Text;
+            //            supplierToUpdate.Country = countryTextBox.Text;
+            //            supplierToUpdate.Phone = phoneTextBox.Text;
+            //            supplierToUpdate.Fax = faxTextBox.Text;
+            //            supplierToUpdate.HomePage = homePageTextBox.Text;
+
+            //            // Guardar los cambios en la base de datos
+            //            var validationResult = _suppliersValidator.Validate(supplierToUpdate);
+
+            //            if (validationResult.IsValid)
+            //            {
+            //                _northwindContext.Suppliers.Add(supplierToUpdate);
+            //                _northwindContext.SaveChanges();
+            //                LoadSuppliers();
+            //                MessageBox.Show("Suplidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                Log.Information("Suplidor actualizado: ID {SupplierId}", supplierId);
+            //            }
+
+            //            else
+            //            {
+            //                var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+            //                MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Suplidor no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Por favor, seleccione un suplidor para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //}
+            //catch (DbUpdateException ex)
+            //{
+            //    // Si ocurre un error durante la actualización, registrar el error
+            //    Log.Error("Error al actualizar el suplidor: {ErrorMessage}", ex.InnerException?.Message);
+            //    MessageBox.Show("Error al actualizar el suplidor. Consulte el registro para más detalles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+            try
             {
-                // Obtener el valor de la clave primaria de la fila seleccionada
-                int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
-
-                // Obtener el producto a modificar
-                var supplierToUpdate = _northwindContext.Suppliers.Find(supplierId);
-                if (supplierToUpdate != null)
+                if (SuppliersDataGridView.SelectedRows.Count > 0)
                 {
-                    
+                    // Obtener el ID del proveedor de la fila seleccionada
+                    int supplierId = Convert.ToInt32(SuppliersDataGridView.SelectedRows[0].Cells["SuppliersIdColumn1"].Value);
 
-                    supplierToUpdate.CompanyName = companyNameTextBox.Text;
-                    supplierToUpdate.ContactName = contactNameTextBox.Text;
-                    supplierToUpdate.ContactTitle = contactTitleTextBox.Text;
-                    supplierToUpdate.Address = AddressTextBox.Text;
-                    supplierToUpdate.City = cityTextBox.Text;
-                    supplierToUpdate.Region = regionTextBox.Text;
-                    supplierToUpdate.PostalCode = postalCodeTextBox.Text;
-                    supplierToUpdate.Country = countryTextBox.Text;
-                    supplierToUpdate.Phone = phoneTextBox.Text;
-                    supplierToUpdate.Fax = faxTextBox.Text;
-                    supplierToUpdate.HomePage = homePageTextBox.Text;
-
-                    // Guardar los cambios en la base de datos
-                    var validationResult = _suppliersValidator.Validate(supplierToUpdate);
-
-                    if (validationResult.IsValid)
+                    // Obtener el proveedor a modificar
+                    var supplierToUpdate = _northwindContext.Suppliers.Find(supplierId);
+                    if (supplierToUpdate != null)
                     {
-                        _northwindContext.Suppliers.Add(supplierToUpdate);
-                        _northwindContext.SaveChanges();
-                        LoadSuppliers();
-                        MessageBox.Show("Suplidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                        // Actualizar las propiedades del proveedor
+                        supplierToUpdate.CompanyName = companyNameTextBox.Text;
+                        supplierToUpdate.ContactName = contactNameTextBox.Text;
+                        supplierToUpdate.ContactTitle = contactTitleTextBox.Text;
+                        supplierToUpdate.Address = AddressTextBox.Text;
+                        supplierToUpdate.City = cityTextBox.Text;
+                        supplierToUpdate.Region = regionTextBox.Text;
+                        supplierToUpdate.PostalCode = postalCodeTextBox.Text;
+                        supplierToUpdate.Country = countryTextBox.Text;
+                        supplierToUpdate.Phone = phoneTextBox.Text;
+                        supplierToUpdate.Fax = faxTextBox.Text;
+                        supplierToUpdate.HomePage = homePageTextBox.Text;
 
+                        // Validar la entidad actualizada
+                        var validationResult = _suppliersValidator.Validate(supplierToUpdate);
+
+                        if (validationResult.IsValid)
+                        {
+                            _northwindContext.SaveChanges(); // Guardar los cambios en la base de datos
+                            LoadSuppliers();
+                            MessageBox.Show("Suplidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Log.Information("Suplidor actualizado: ID {SupplierId}", supplierId);
+                        }
+                        else
+                        {
+                            // Mostrar mensajes de error de validación
+                            var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+                            MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                     else
                     {
-                        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-                        MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Suplidor no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show("Suplidor no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Por favor, seleccione un suplidor para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch (DbUpdateException ex)
             {
-                MessageBox.Show("Por favor, seleccione un suplidor para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Si ocurre un error durante la actualización, registrar el error
+                Log.Error("Error al actualizar el suplidor: {ErrorMessage}", ex.InnerException?.Message);
+                MessageBox.Show("Error al actualizar el suplidor. Consulte el registro para más detalles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                // Capturar cualquier otra excepción y mostrar un mensaje genérico
+                MessageBox.Show("Se ha producido un error al actualizar el suplidor: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
         private void SuppliersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -238,10 +323,12 @@ namespace Practica3
                             LoadSuppliers();
 
                             MessageBox.Show("Suplidor eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Log.Information("Suplidor eliminado: ID {SupplierId}", supplierId);
                         }
                         else
                         {
                             MessageBox.Show("Este suplidor tiene referencias en otras tablas y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Log.Information("Este suplidor, tiene referencia en otras tablas: ID {SupplierId}", supplierId);
                         }
                     }
                     else

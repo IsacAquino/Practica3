@@ -41,45 +41,7 @@ namespace Practica3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //var category = new Categories();
-            //category.CategoryName = categoryNameTextBox.Text;
-            //category.Description = descriptionTextBox.Text;
-
-            //var validationResult = _categoriesValidator
-            //        .Validate(category);
-
-            //try
-            //{
-            //    if (validationResult.IsValid)
-            //    {
-            //        _northwindContext.Categories.Add(category);
-            //        _northwindContext.SaveChanges();
-            //        MessageBox.Show("Categoria insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        LoadCategories();
-
-            //    }
-            //    else
-            //    {
-            //        try
-            //        {
-            //            throw new ApplicationException("Some Error");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
-            //            Log.Error(ex, ex.Message);
-            //        }
-            //        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-            //        MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            //    }
-
-            //    categoryNameTextBox.Clear();
-            //    descriptionTextBox.Clear();
-            //}
-            //catch (DbUpdateException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error saving categories", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            
 
             try
             {
@@ -110,6 +72,7 @@ namespace Practica3
                     _northwindContext.SaveChanges();
                     MessageBox.Show("Categoría insertada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadCategories();
+                    Log.Information("Categoria insertada: Nombre: categoria {CategoryName}, Descripcion: {Description}", category.CategoryName, category.Description);
                 }
                 else
                 {
@@ -145,10 +108,10 @@ namespace Practica3
             {
                 if (CategoriesDataGridView.SelectedRows.Count > 0)
                 {
-                    // Obtener el nombre de la categoría de la fila seleccionada
+                    // Obtener el ID de la categoría de la fila seleccionada
                     int categoryId = Convert.ToInt32(CategoriesDataGridView.SelectedRows[0].Cells["CategoryIdColumn1"].Value);
 
-                    // Buscar la categoría por su nombre
+                    // Buscar la categoría por su ID
                     var categoryToUpdate = _northwindContext.Categories.Find(categoryId);
                     if (categoryToUpdate != null)
                     {
@@ -156,32 +119,22 @@ namespace Practica3
                         categoryToUpdate.CategoryName = categoryNameTextBox.Text;
                         categoryToUpdate.Description = descriptionTextBox.Text;
 
-                        // Guardar los cambios en la base de datos
+                        // Validar la entidad actualizada
                         var validationResult = _categoriesValidator.Validate(categoryToUpdate);
 
                         if (validationResult.IsValid)
                         {
-                            _northwindContext.Categories.Add(categoryToUpdate);
-                            _northwindContext.SaveChanges();
+                            _northwindContext.SaveChanges(); // Guardar los cambios en la base de datos
                             MessageBox.Show("Categoría actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadCategories();
+                            Log.Information("Categoria actualizada: ID: {CategoryId}", categoryId);
                         }
-
                         else
                         {
-                            try
-                            {
-                                throw new ApplicationException("Some Error");
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Lo sentimos. Ocurrió un error inesperado. Intente más tarde.");
-                                Log.Error(ex, ex.Message);
-                            }
+                            // Mostrar mensajes de error de validación
                             var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
                             MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
                     }
                     else
                     {
@@ -196,6 +149,11 @@ namespace Practica3
             catch (DbUpdateException ex)
             {
                 MessageBox.Show("Error al actualizar la categoría: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lo sentimos. Ocurrió un error inesperado. Intente más tarde.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex, ex.Message);
             }
 
         }
@@ -283,10 +241,12 @@ namespace Practica3
                             LoadCategories();
 
                             MessageBox.Show("Categoria eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Log.Information("Categoria eliminada: ID {CategoryId}", categoryId);
                         }
                         else
                         {
                             MessageBox.Show("Esta categoria tiene referencias en otras tablas y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Log.Information("Esta categoria, tiene referencia en otras tablas: ID {CategoryId}", categoryId);
                         }
                     }
                     else

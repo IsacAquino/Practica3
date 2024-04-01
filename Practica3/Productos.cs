@@ -66,6 +66,7 @@ namespace Practica3
             
             try
             {
+                
                 var productName = productNameTextBox.Text;
 
                 var existingProduct = _northwindContext.Products.FirstOrDefault(p => p.ProductName == productName);
@@ -121,6 +122,7 @@ namespace Practica3
 
                 if (validationResult.IsValid)
                 {
+
                     _northwindContext.Products.Add(product);
                     _northwindContext.SaveChanges();
                     MessageBox.Show("Producto insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,15 +135,20 @@ namespace Practica3
                     StockTextBox.Clear();
                     OrdenTextBox.Clear();
                     levelTextbox.Clear();
+
+                    Log.Information("Producto insertado: ID: {ProductId}, Nombre: {ProductName}", product.ProductId, product.ProductName);
                 }
                 else
                 {
+
                     var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
                     MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
             catch (DbUpdateException ex)
             {
+                Log.Error(ex, "Error al insertar producto.");
+                MessageBox.Show("Error al insertar producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 // Mostrar mensaje de error al usuario
                 MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -150,6 +157,7 @@ namespace Practica3
 
                 
             }
+
 
         }
 
@@ -241,10 +249,12 @@ namespace Practica3
                             RefreshForm();
 
                             MessageBox.Show("Producto eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Log.Information("Producto eliminado: ID {ProductId}", productId);
                         }
                         else
                         {
                             MessageBox.Show("Este producto tiene referencias en otras tablas y no puede ser eliminado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Log.Information("Este producto, tiene referencia en otras tablas: ID {ProductId}", productId);
                         }
                     }
                     else
@@ -261,6 +271,7 @@ namespace Practica3
             {
                 MessageBox.Show("Error al eliminar el producto: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 RefreshForm(); // Refrescar todo el formulario incluso en caso de error
+                Log.Error(ex, "Error al eliminar el producto.");
             }
 
 
