@@ -40,8 +40,6 @@ namespace Practica3
                 services.AddScoped<Productos>();
                 services.AddScoped<Categorias>();
                 services.AddScoped<Suplidores>();
-                services.AddScoped<Ordenes>();
-                services.AddScoped<OrdenesDetalles>();
                 services.AddScoped<OrdenesPrincipales>();
                 services.AddValidatorsFromAssemblyContaining(typeof(Menu));
                 services.AddSingleton(configuration);

@@ -33,16 +33,18 @@ namespace Practica3
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var clientes = _northwindContext.Customers.Select(c => c.CustomerId).ToList();
+            var clientes = _northwindContext.Customers.Select(a => a.CustomerId).ToList();
             customerIdComboBox.DataSource = clientes;
+            //customerIdComboBox.DataSource = -1;
 
-            var producto = _northwindContext.Products.Select(c => c.ProductId).ToList();
+            var producto = _northwindContext.Products.Select(a => a.ProductId).ToList();
             ProductIdcomboBox.DataSource = producto;
-
-            var empleados = _northwindContext.Employees.ToList();
+            
+            //ProductIdcomboBox.SelectedIndex = -1;
+            
+            var empleados = _northwindContext.Employees.Select(a => a.EmployeeId).ToList();
             employeeIdComboBox.DataSource = empleados;
-            employeeIdComboBox.DisplayMember = "FullName";
-            employeeIdComboBox.ValueMember = "EmployeeId";
+            //employeeIdComboBox.SelectedIndex = -1;
 
             LoadOrders();
         }
@@ -90,7 +92,6 @@ namespace Practica3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 // Verificar si algún control de entrada está vacío, lo que indica que el usuario está intentando insertar una nueva orden
@@ -105,61 +106,82 @@ namespace Practica3
                     string.IsNullOrWhiteSpace(shipPostalCodeTextBox.Text) ||
                     string.IsNullOrWhiteSpace(shipCountryTextBox.Text))
                 {
-                    // Crear una nueva orden
-                    var newOrder = new Orders
+                    // Si alguno de los campos está vacío, proceder con la inserción de la orden
+                    var orders = new Orders();
+
+                    orders.CustomerId = customerIdComboBox.Text;
+                    // Obtener el ID del empleado seleccionado
+                    if (employeeIdComboBox.SelectedItem != null)
                     {
-                        CustomerId = customerIdComboBox.Text,
-                        // Obtener el ID del empleado seleccionado
-                        EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue),
-                        OrderDate = orderDateTimePicker1.Value,
-                        RequiredDate = requiredDateTimePicker2.Value,
-                        ShippedDate = shippedDateTimePicker3.Value,
-                        ShipVia = Convert.ToInt32(shipViaTextBox.Text),
-                        Freight = Convert.ToDecimal(freightTextBox.Text),
-                        ShipName = shipNameTextBox.Text,
-                        ShipAddress = shipAddressTextBox.Text,
-                        ShipCity = shipCityTextBox.Text,
-                        ShipRegion = shipRegionTextBox.Text,
-                        ShipPostalCode = shipPostalCodeTextBox.Text,
-                        ShipCountry = shipCountryTextBox.Text
-                    };
+                        orders.EmployeeId = Convert.ToInt32(employeeIdComboBox.SelectedValue);
+                    }
+                    orders.OrderDate = orderDateTimePicker1.Value;
+                    orders.RequiredDate = requiredDateTimePicker2.Value;
+                    orders.ShippedDate = shippedDateTimePicker3.Value;
+                    int shipVia;
+                    if (int.TryParse(shipViaTextBox.Text, out shipVia))
+                    {
+                        orders.ShipVia = shipVia;
+                    }
+                    decimal freight;
+                    if (decimal.TryParse(freightTextBox.Text, out freight))
+                    {
+                        orders.Freight = freight;
+                    }
+                    orders.ShipName = shipNameTextBox.Text;
+                    orders.ShipAddress = shipAddressTextBox.Text;
+                    orders.ShipCity = shipCityTextBox.Text;
+                    orders.ShipRegion = shipRegionTextBox.Text;
+                    orders.ShipPostalCode = shipPostalCodeTextBox.Text;
+                    orders.ShipCountry = shipCountryTextBox.Text;
 
-                    // Validar la nueva orden
-                    var validationResult = _ordersValidator.Validate(newOrder);
+                    var validationResultOrders = _ordersValidator.Validate(orders);
 
-                    if (validationResult.IsValid)
+                    if (validationResultOrders.IsValid)
                     {
                         // Agregar la nueva orden al contexto de base de datos
-                        _northwindContext.Orders.Add(newOrder);
+                        _northwindContext.Orders.Add(orders);
                         _northwindContext.SaveChanges();
 
                         // Insertar los detalles de la orden
                         var newOrderDetails = new OrderDetails
                         {
-                            OrderId = newOrder.OrderId, // Usar el ID de la orden recién insertada
+                            OrderId = orders.OrderId, // Usar el ID de la orden recién insertada
                             ProductId = Convert.ToInt32(ProductIdcomboBox.SelectedValue),
                             UnitPrice = Convert.ToDecimal(UnitPriceTextBox.Text),
                             Quantity = Convert.ToInt16(QuantityTextBox.Text),
                             Discount = Convert.ToSingle(DiscountTextBox.Text)
                         };
 
-                        // Agregar los detalles de la orden al contexto de base de datos
-                        _northwindContext.OrderDetails.Add(newOrderDetails);
-                        _northwindContext.SaveChanges();
+                        var orderDetailsValidator = new OrderDetailsValidator();
+                        var validationResultOrderDetails = orderDetailsValidator.Validate(newOrderDetails);
 
-                        MessageBox.Show("Orden y detalles insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadOrders();
-                        ClearOrderFormFields();
+                        if (validationResultOrderDetails.IsValid)
+                        {
+                            // Agregar los detalles de la orden al contexto de base de datos
+                            _northwindContext.OrderDetails.Add(newOrderDetails);
+                            _northwindContext.SaveChanges();
+
+                            MessageBox.Show("Orden y detalles insertados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadOrders();
+                            ClearOrderFormFields();
+                        }
+                        else
+                        {
+                            // Manejar errores de validación de los detalles de la orden
+                            var validationMessagesOrderDetails = string.Join("\n", validationResultOrderDetails.Errors.Select(a => a.ErrorMessage));
+                            MessageBox.Show(validationMessagesOrderDetails, "Error de validación de detalles de orden", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        // Manejar errores de validación
-                        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-                        MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Manejar errores de validación de la orden principal
+                        var validationMessagesOrders = string.Join("\n", validationResultOrders.Errors.Select(a => a.ErrorMessage));
+                        MessageBox.Show(validationMessagesOrders, "Error de validación de la orden", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     // Limpiar los campos del formulario después de la inserción
-                    //ClearOrderFormFields();
+
                 }
                 else
                 {
@@ -171,7 +193,6 @@ namespace Practica3
             {
                 MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
 
         }
@@ -609,7 +630,8 @@ namespace Practica3
         }
 
         private void button2_Click_1(object sender, EventArgs e)
-        {   
+        {
+
             try
             {
                 if (ordersDataGridView.SelectedRows.Count > 0)
@@ -617,11 +639,12 @@ namespace Practica3
                     // Obtener el valor de la clave primaria de la fila seleccionada
                     int orderId = Convert.ToInt32(ordersDataGridView.SelectedRows[0].Cells["OrderIdColumn1"].Value);
 
-                    // Obtener la orden principal a modificar
-                    var orderToUpdate = _northwindContext.Orders.Find(orderId);
+                    // Obtener el pedido a modificar
+                    var orderToUpdate = _northwindContext.Orders.Include(o => o.OrderDetails).FirstOrDefault(o => o.OrderId == orderId);
+
                     if (orderToUpdate != null)
                     {
-                        // Actualizar las propiedades de la orden principal con los valores de los controles
+                        // Actualizar las propiedades del pedido con los valores de los controles
                         orderToUpdate.CustomerId = customerIdComboBox.Text;
 
                         // Obtener el ID del empleado seleccionado
@@ -652,15 +675,26 @@ namespace Practica3
                         orderToUpdate.ShipPostalCode = shipPostalCodeTextBox.Text;
                         orderToUpdate.ShipCountry = shipCountryTextBox.Text;
 
-                        // Actualizar los detalles de la orden asociados a la orden principal
-                        foreach (var detail in orderToUpdate.OrderDetails)
+                        // Actualizar los detalles de la orden
+                        var orderDetailsToUpdate = orderToUpdate.OrderDetails.FirstOrDefault(); // Suponiendo que solo hay un detalle por orden
+
+                        if (orderDetailsToUpdate != null)
                         {
-                            // Aquí puedes actualizar las propiedades de los detalles de la orden según sea necesario
-                            // Por ejemplo:
-                             detail.ProductId = Convert.ToInt32(ProductIdcomboBox.SelectedValue);
-                             detail.UnitPrice = Convert.ToDecimal(UnitPriceTextBox.Text);
-                             detail.Quantity = Convert.ToInt16(QuantityTextBox.Text);
-                             detail.Discount = Convert.ToSingle(DiscountTextBox.Text);
+                            // Si necesitas cambiar el ProductId, elimina el detalle de orden existente
+                            _northwindContext.OrderDetails.Remove(orderDetailsToUpdate);
+
+                            // Crea un nuevo detalle de orden con el ProductId actualizado
+                            var newOrderDetails = new OrderDetails
+                            {
+                                OrderId = orderToUpdate.OrderId, // Usar el ID de la orden
+                                ProductId = Convert.ToInt32(ProductIdcomboBox.SelectedValue),
+                                UnitPrice = Convert.ToDecimal(UnitPriceTextBox.Text),
+                                Quantity = Convert.ToInt16(QuantityTextBox.Text),
+                                Discount = Convert.ToSingle(DiscountTextBox.Text)
+                            };
+
+                            // Agrega el nuevo detalle de orden al contexto
+                            _northwindContext.OrderDetails.Add(newOrderDetails);
                         }
 
                         // Guardar los cambios en la base de datos
@@ -668,8 +702,9 @@ namespace Practica3
 
                         // Recargar los datos en el DataGridView
                         LoadOrders();
+                        ClearOrderFormFields();
 
-                        MessageBox.Show("Pedido actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Pedido y detalles actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -680,10 +715,8 @@ namespace Practica3
             catch (DbUpdateException ex)
             {
                 MessageBox.Show("Error al actualizar la orden: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ClearOrderFormFields(); // Refrescar todo el formulario incluso en caso de error
+                // Refrescar todo el formulario incluso en caso de error
             }
-
-
 
 
 

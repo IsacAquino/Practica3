@@ -315,18 +315,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NorthwindDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Ordenes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ordenes.Designer.cs">
-      <DependentUpon>Ordenes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OrdenesDetalles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OrdenesDetalles.Designer.cs">
-      <DependentUpon>OrdenesDetalles.cs</DependentUpon>
-    </Compile>
     <Compile Include="OrderDetailsValidator.cs" />
     <Compile Include="OrdersValidator.cs" />
     <Compile Include="Productos.cs">
@@ -353,12 +341,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ordenes.resx">
-      <DependentUpon>Ordenes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OrdenesDetalles.resx">
-      <DependentUpon>OrdenesDetalles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Productos.resx">
       <DependentUpon>Productos.cs</DependentUpon>

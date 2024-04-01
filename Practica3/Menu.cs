@@ -17,17 +17,14 @@ namespace Practica3
         public readonly Productos _productos;
         public readonly Categorias _categorias;
         public readonly Suplidores _suplidores;
-        public readonly Ordenes _ordenes;
-        public readonly OrdenesDetalles _ordenesDetalles;
         public readonly OrdenesPrincipales _ordenesPrincipales;
-        public Menu(Productos productos, Categorias categorias, Suplidores suplidores, Ordenes ordenes, OrdenesDetalles ordenesDetalles, OrdenesPrincipales ordenesPrincipales)
+        public Menu(Productos productos, Categorias categorias, Suplidores suplidores, OrdenesPrincipales ordenesPrincipales)
         {
             InitializeComponent();
             _productos = productos;
             _categorias = categorias;
             _suplidores = suplidores;
-            _ordenes = ordenes;
-            _ordenesDetalles = ordenesDetalles;
+            
             _ordenesPrincipales = ordenesPrincipales;
 
         }
@@ -51,12 +48,12 @@ namespace Practica3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            _ordenes.ShowDialog();
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            _ordenesDetalles.ShowDialog();
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -81,7 +78,7 @@ namespace Practica3
 
         private void button7_Click(object sender, EventArgs e)
         {
-            _ordenesPrincipales.Show(); 
+            _ordenesPrincipales.ShowDialog(); 
         }
     }
 }

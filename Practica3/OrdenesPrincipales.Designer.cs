@@ -112,12 +112,12 @@
             this.UnitPriceColumn1,
             this.QuantityColumn1,
             this.DiscountColumn1});
-            this.ordersDataGridView.Location = new System.Drawing.Point(355, 77);
+            this.ordersDataGridView.Location = new System.Drawing.Point(355, 85);
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.RowHeadersWidth = 62;
             this.ordersDataGridView.RowTemplate.Height = 28;
             this.ordersDataGridView.Size = new System.Drawing.Size(890, 384);
-            this.ordersDataGridView.TabIndex = 0;
+            this.ordersDataGridView.TabIndex = 23;
             this.ordersDataGridView.Visible = false;
             this.ordersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersDataGridView_CellClick_1);
             // 
@@ -268,52 +268,52 @@
             // employeeIdComboBox
             // 
             this.employeeIdComboBox.FormattingEnabled = true;
-            this.employeeIdComboBox.Location = new System.Drawing.Point(204, 70);
+            this.employeeIdComboBox.Location = new System.Drawing.Point(189, 66);
             this.employeeIdComboBox.Name = "employeeIdComboBox";
-            this.employeeIdComboBox.Size = new System.Drawing.Size(122, 28);
-            this.employeeIdComboBox.TabIndex = 100;
+            this.employeeIdComboBox.Size = new System.Drawing.Size(137, 28);
+            this.employeeIdComboBox.TabIndex = 1;
             // 
             // customerIdComboBox
             // 
             this.customerIdComboBox.FormattingEnabled = true;
-            this.customerIdComboBox.Location = new System.Drawing.Point(204, 33);
+            this.customerIdComboBox.Location = new System.Drawing.Point(189, 29);
             this.customerIdComboBox.Name = "customerIdComboBox";
-            this.customerIdComboBox.Size = new System.Drawing.Size(122, 28);
-            this.customerIdComboBox.TabIndex = 99;
+            this.customerIdComboBox.Size = new System.Drawing.Size(137, 28);
+            this.customerIdComboBox.TabIndex = 0;
             this.customerIdComboBox.SelectedIndexChanged += new System.EventHandler(this.customerIdComboBox_SelectedIndexChanged);
             // 
             // shippedDateTimePicker3
             // 
-            this.shippedDateTimePicker3.Location = new System.Drawing.Point(200, 191);
+            this.shippedDateTimePicker3.Location = new System.Drawing.Point(189, 189);
             this.shippedDateTimePicker3.Name = "shippedDateTimePicker3";
-            this.shippedDateTimePicker3.Size = new System.Drawing.Size(126, 26);
-            this.shippedDateTimePicker3.TabIndex = 98;
+            this.shippedDateTimePicker3.Size = new System.Drawing.Size(137, 26);
+            this.shippedDateTimePicker3.TabIndex = 4;
             // 
             // requiredDateTimePicker2
             // 
-            this.requiredDateTimePicker2.Location = new System.Drawing.Point(200, 150);
+            this.requiredDateTimePicker2.Location = new System.Drawing.Point(189, 146);
             this.requiredDateTimePicker2.Name = "requiredDateTimePicker2";
-            this.requiredDateTimePicker2.Size = new System.Drawing.Size(126, 26);
-            this.requiredDateTimePicker2.TabIndex = 97;
+            this.requiredDateTimePicker2.Size = new System.Drawing.Size(137, 26);
+            this.requiredDateTimePicker2.TabIndex = 3;
             // 
             // orderDateTimePicker1
             // 
-            this.orderDateTimePicker1.Location = new System.Drawing.Point(200, 108);
+            this.orderDateTimePicker1.Location = new System.Drawing.Point(189, 104);
             this.orderDateTimePicker1.Name = "orderDateTimePicker1";
-            this.orderDateTimePicker1.Size = new System.Drawing.Size(126, 26);
-            this.orderDateTimePicker1.TabIndex = 96;
+            this.orderDateTimePicker1.Size = new System.Drawing.Size(137, 26);
+            this.orderDateTimePicker1.TabIndex = 2;
             // 
             // shipCountryTextBox
             // 
-            this.shipCountryTextBox.Location = new System.Drawing.Point(200, 518);
+            this.shipCountryTextBox.Location = new System.Drawing.Point(185, 526);
             this.shipCountryTextBox.Name = "shipCountryTextBox";
-            this.shipCountryTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipCountryTextBox.TabIndex = 95;
+            this.shipCountryTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipCountryTextBox.TabIndex = 12;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(69, 518);
+            this.label14.Location = new System.Drawing.Point(54, 526);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(109, 20);
             this.label14.TabIndex = 94;
@@ -321,15 +321,15 @@
             // 
             // shipPostalCodeTextBox
             // 
-            this.shipPostalCodeTextBox.Location = new System.Drawing.Point(200, 477);
+            this.shipPostalCodeTextBox.Location = new System.Drawing.Point(185, 485);
             this.shipPostalCodeTextBox.Name = "shipPostalCodeTextBox";
-            this.shipPostalCodeTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipPostalCodeTextBox.TabIndex = 93;
+            this.shipPostalCodeTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipPostalCodeTextBox.TabIndex = 11;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 477);
+            this.label13.Location = new System.Drawing.Point(-1, 485);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(176, 20);
             this.label13.TabIndex = 92;
@@ -337,15 +337,15 @@
             // 
             // shipRegionTextBox
             // 
-            this.shipRegionTextBox.Location = new System.Drawing.Point(200, 435);
+            this.shipRegionTextBox.Location = new System.Drawing.Point(185, 443);
             this.shipRegionTextBox.Name = "shipRegionTextBox";
-            this.shipRegionTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipRegionTextBox.TabIndex = 91;
+            this.shipRegionTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipRegionTextBox.TabIndex = 10;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(51, 435);
+            this.label12.Location = new System.Drawing.Point(36, 443);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(127, 20);
             this.label12.TabIndex = 90;
@@ -353,15 +353,15 @@
             // 
             // shipCityTextBox
             // 
-            this.shipCityTextBox.Location = new System.Drawing.Point(200, 394);
+            this.shipCityTextBox.Location = new System.Drawing.Point(185, 402);
             this.shipCityTextBox.Name = "shipCityTextBox";
-            this.shipCityTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipCityTextBox.TabIndex = 89;
+            this.shipCityTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipCityTextBox.TabIndex = 9;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(52, 394);
+            this.label11.Location = new System.Drawing.Point(37, 402);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(126, 20);
             this.label11.TabIndex = 88;
@@ -369,15 +369,15 @@
             // 
             // shipAddressTextBox
             // 
-            this.shipAddressTextBox.Location = new System.Drawing.Point(200, 352);
+            this.shipAddressTextBox.Location = new System.Drawing.Point(185, 360);
             this.shipAddressTextBox.Name = "shipAddressTextBox";
-            this.shipAddressTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipAddressTextBox.TabIndex = 87;
+            this.shipAddressTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipAddressTextBox.TabIndex = 8;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(52, 352);
+            this.label10.Location = new System.Drawing.Point(37, 360);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(142, 20);
             this.label10.TabIndex = 86;
@@ -385,15 +385,15 @@
             // 
             // shipNameTextBox
             // 
-            this.shipNameTextBox.Location = new System.Drawing.Point(200, 308);
+            this.shipNameTextBox.Location = new System.Drawing.Point(185, 316);
             this.shipNameTextBox.Name = "shipNameTextBox";
-            this.shipNameTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipNameTextBox.TabIndex = 85;
+            this.shipNameTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipNameTextBox.TabIndex = 7;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(56, 308);
+            this.label9.Location = new System.Drawing.Point(41, 316);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(138, 20);
             this.label9.TabIndex = 84;
@@ -401,15 +401,15 @@
             // 
             // freightTextBox
             // 
-            this.freightTextBox.Location = new System.Drawing.Point(200, 269);
+            this.freightTextBox.Location = new System.Drawing.Point(185, 272);
             this.freightTextBox.Name = "freightTextBox";
-            this.freightTextBox.Size = new System.Drawing.Size(122, 26);
-            this.freightTextBox.TabIndex = 83;
+            this.freightTextBox.Size = new System.Drawing.Size(141, 26);
+            this.freightTextBox.TabIndex = 6;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(65, 269);
+            this.label8.Location = new System.Drawing.Point(50, 272);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 20);
             this.label8.TabIndex = 82;
@@ -417,15 +417,15 @@
             // 
             // shipViaTextBox
             // 
-            this.shipViaTextBox.Location = new System.Drawing.Point(200, 233);
+            this.shipViaTextBox.Location = new System.Drawing.Point(185, 229);
             this.shipViaTextBox.Name = "shipViaTextBox";
-            this.shipViaTextBox.Size = new System.Drawing.Size(122, 26);
-            this.shipViaTextBox.TabIndex = 81;
+            this.shipViaTextBox.Size = new System.Drawing.Size(141, 26);
+            this.shipViaTextBox.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(65, 233);
+            this.label7.Location = new System.Drawing.Point(50, 229);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 20);
             this.label7.TabIndex = 80;
@@ -434,7 +434,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(65, 193);
+            this.label6.Location = new System.Drawing.Point(50, 189);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(121, 20);
             this.label6.TabIndex = 79;
@@ -443,7 +443,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(65, 150);
+            this.label5.Location = new System.Drawing.Point(50, 146);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 20);
             this.label5.TabIndex = 78;
@@ -452,7 +452,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 108);
+            this.label4.Location = new System.Drawing.Point(38, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(141, 20);
             this.label4.TabIndex = 77;
@@ -461,7 +461,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(99, 67);
+            this.label3.Location = new System.Drawing.Point(84, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 76;
@@ -470,7 +470,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(122, 31);
+            this.label2.Location = new System.Drawing.Point(107, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 20);
             this.label2.TabIndex = 75;
@@ -479,10 +479,10 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button6.Location = new System.Drawing.Point(961, 468);
+            this.button6.Location = new System.Drawing.Point(961, 482);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(139, 70);
-            this.button6.TabIndex = 106;
+            this.button6.TabIndex = 21;
             this.button6.Text = "ELIMINAR";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
@@ -490,10 +490,10 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button5.Location = new System.Drawing.Point(1106, 468);
+            this.button5.Location = new System.Drawing.Point(1106, 482);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(139, 70);
-            this.button5.TabIndex = 105;
+            this.button5.TabIndex = 22;
             this.button5.Text = "SALIR";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
@@ -501,10 +501,10 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button3.Location = new System.Drawing.Point(645, 468);
+            this.button3.Location = new System.Drawing.Point(645, 482);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(139, 70);
-            this.button3.TabIndex = 104;
+            this.button3.TabIndex = 19;
             this.button3.Text = "LEER";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
@@ -512,10 +512,10 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(500, 468);
+            this.button4.Location = new System.Drawing.Point(500, 482);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(139, 70);
-            this.button4.TabIndex = 103;
+            this.button4.TabIndex = 18;
             this.button4.Text = "LIMPIAR";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
@@ -523,10 +523,10 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button2.Location = new System.Drawing.Point(790, 468);
+            this.button2.Location = new System.Drawing.Point(790, 482);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(165, 70);
-            this.button2.TabIndex = 102;
+            this.button2.TabIndex = 20;
             this.button2.Text = "ACTUALIZAR";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
@@ -534,10 +534,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(355, 468);
+            this.button1.Location = new System.Drawing.Point(355, 482);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 70);
-            this.button1.TabIndex = 101;
+            this.button1.TabIndex = 17;
             this.button1.Text = "INSERTAR";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -548,15 +548,15 @@
             this.label1.Location = new System.Drawing.Point(362, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 20);
-            this.label1.TabIndex = 107;
+            this.label1.TabIndex = 15;
             this.label1.Text = "Producto ID:";
             // 
             // DiscountTextBox
             // 
             this.DiscountTextBox.Location = new System.Drawing.Point(1147, 28);
             this.DiscountTextBox.Name = "DiscountTextBox";
-            this.DiscountTextBox.Size = new System.Drawing.Size(76, 26);
-            this.DiscountTextBox.TabIndex = 110;
+            this.DiscountTextBox.Size = new System.Drawing.Size(98, 26);
+            this.DiscountTextBox.TabIndex = 16;
             // 
             // label15
             // 
@@ -564,7 +564,7 @@
             this.label15.Location = new System.Drawing.Point(1051, 31);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(91, 20);
-            this.label15.TabIndex = 109;
+            this.label15.TabIndex = 21;
             this.label15.Text = "Descuento:";
             // 
             // QuantityTextBox
@@ -572,7 +572,7 @@
             this.QuantityTextBox.Location = new System.Drawing.Point(923, 28);
             this.QuantityTextBox.Name = "QuantityTextBox";
             this.QuantityTextBox.Size = new System.Drawing.Size(122, 26);
-            this.QuantityTextBox.TabIndex = 112;
+            this.QuantityTextBox.TabIndex = 15;
             this.QuantityTextBox.TextChanged += new System.EventHandler(this.QuantityTextBox_TextChanged);
             // 
             // label16
@@ -581,7 +581,7 @@
             this.label16.Location = new System.Drawing.Point(840, 31);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 20);
-            this.label16.TabIndex = 111;
+            this.label16.TabIndex = 19;
             this.label16.Text = "Cantidad:";
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
@@ -590,7 +590,7 @@
             this.UnitPriceTextBox.Location = new System.Drawing.Point(712, 28);
             this.UnitPriceTextBox.Name = "UnitPriceTextBox";
             this.UnitPriceTextBox.Size = new System.Drawing.Size(122, 26);
-            this.UnitPriceTextBox.TabIndex = 114;
+            this.UnitPriceTextBox.TabIndex = 14;
             // 
             // label17
             // 
@@ -598,7 +598,7 @@
             this.label17.Location = new System.Drawing.Point(593, 31);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(113, 20);
-            this.label17.TabIndex = 113;
+            this.label17.TabIndex = 17;
             this.label17.Text = "Precio unitario:";
             // 
             // ProductIdcomboBox
@@ -607,13 +607,15 @@
             this.ProductIdcomboBox.Location = new System.Drawing.Point(466, 28);
             this.ProductIdcomboBox.Name = "ProductIdcomboBox";
             this.ProductIdcomboBox.Size = new System.Drawing.Size(121, 28);
-            this.ProductIdcomboBox.TabIndex = 115;
+            this.ProductIdcomboBox.TabIndex = 13;
             // 
             // OrdenesPrincipales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1314, 586);
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1293, 562);
             this.Controls.Add(this.ProductIdcomboBox);
             this.Controls.Add(this.UnitPriceTextBox);
             this.Controls.Add(this.label17);
@@ -656,7 +658,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ordersDataGridView);
             this.Name = "OrdenesPrincipales";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Ordenes";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             this.ResumeLayout(false);

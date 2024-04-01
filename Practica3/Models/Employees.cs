@@ -19,6 +19,8 @@ namespace Practica3.Models
         public int EmployeeId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
         public string Title { get; set; }
         public string TitleOfCourtesy { get; set; }
         public DateTime? BirthDate { get; set; }

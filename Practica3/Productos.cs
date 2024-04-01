@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,133 +33,37 @@ namespace Practica3
 
         private void Productos_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'northwindDataSet.Products' Puede moverla o quitarla según sea necesario.
-            //this.productsTableAdapter.Fill(this.northwindDataSet.Products);
             LoadProducts();
-            //this.GetService(typeof(Productos));
+            var suplidores = _northwindContext.Suppliers.ToList();
+
+            
+            suppliersIdcomboBox1.DataSource = suplidores;
+            suppliersIdcomboBox1.DisplayMember = "ContactName"; 
+            suppliersIdcomboBox1.ValueMember = "SupplierId"; 
+            suppliersIdcomboBox1.SelectedIndex = -1;
+
+            var categorias = _northwindContext.Categories.ToList();
+
+            
+            categoriescomboBox1.DataSource = categorias;
+            categoriescomboBox1.DisplayMember = "CategoryName"; 
+            categoriescomboBox1.ValueMember = "CategoryId"; 
+            categoriescomboBox1.SelectedIndex = -1;
+
+
+
+            
+            
         }
 
         private void LoadProducts()
         {
             ProductsDataGridView.DataSource = _northwindContext.Products.ToList();
-            
-            
         }
-
-        //public Productos? Productos { internal set {
-
-        //        productNameTextBox.Text = value.ProductName;
-        //        supplierIDTextBox.Text = value.
-        //        CategoryIdTextBox.Text = value.CategoryIdTextBox.Text;
-        //    } }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    var products = new Products();
-
-            //    //products.ProductName = productNameTextBox.Text;
-
-            //    var productName = productNameTextBox.Text;
-
-            //    var existingProduct = _northwindContext.Products.FirstOrDefault(p => p.ProductName == productName);
-
-            //    if (existingProduct != null)
-            //    {
-            //        MessageBox.Show("El producto ya está registrado.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return; // Salir del método sin insertar el producto nuevamente
-            //    }
-
-            //    // Si el producto no existe, proceder con la inserción
-            //    var product = new Products
-            //    {
-            //        ProductName = productName,
-            //        // Asignar el resto de las propiedades del producto aquí...
-            //    };
-
-
-
-            //    int supplierId;
-            //    if (int.TryParse(supplierIDTextBox.Text, out supplierId))
-            //    {
-
-            //        products.SupplierId = supplierId;
-            //    }
-            //    products.QuantityPerUnit = quantityTextBox.Text;
-            //    int categoryId;
-            //    if (int.TryParse(CategoryIdTextBox.Text, out categoryId))
-            //    {
-            //        products.CategoryId = categoryId;
-            //    }
-            //    decimal unitPrice;
-            //    if (decimal.TryParse(UnitPricesTextBox.Text, out unitPrice))
-            //    {
-            //        products.UnitPrice = unitPrice;
-            //    }
-            //    short unitsInStock;
-            //    if (short.TryParse(StockTextBox.Text, out unitsInStock))
-            //    {
-            //        products.UnitsInStock = unitsInStock;
-            //    }
-            //    short unitsOnOrder;
-            //    if (short.TryParse(OrdenTextBox.Text, out unitsOnOrder))
-            //    {
-            //        products.UnitsOnOrder = unitsOnOrder;
-            //    }
-            //    short reorderLevel;
-            //    if (short.TryParse(levelTextbox.Text, out reorderLevel))
-            //    {
-            //        products.ReorderLevel = reorderLevel;
-            //    }
-
-            //    var validationResult = _productsValidator
-            //        .Validate(products);
-
-            //    if (validationResult.IsValid)
-            //    {
-            //        _northwindContext.Products.Add(products);
-            //        _northwindContext.SaveChanges();
-            //        MessageBox.Show("Producto insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        LoadProducts();
-
-            //    }
-            //    else
-            //    {
-            //        try
-            //        {
-            //            throw new ApplicationException("Some Error");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
-            //            Log.Error(ex, ex.Message);
-            //        }
-            //        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-            //        MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            //    }
-
-
-            //    //ProductsDataGridView.Refresh();
-
-            //    productNameTextBox.Clear();
-            //    supplierIDTextBox.Clear();
-            //    CategoryIdTextBox.Clear();
-            //    quantityTextBox.Clear();
-            //    UnitPricesTextBox.Clear();
-            //    StockTextBox.Clear();
-            //    OrdenTextBox.Clear();
-            //    levelTextbox.Clear();
-
-
-            //    //DialogResult = DialogResult.OK;
-            //}
-            //catch (DbUpdateException ex)
-            //{
-            //    // Capturar la excepción y mostrar más detalles
-            //    MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
+            
             try
             {
                 var productName = productNameTextBox.Text;
@@ -175,20 +80,21 @@ namespace Practica3
                 var product = new Products
                 {
                     ProductName = productName,
-                    // Asignar el resto de las propiedades del producto aquí...
+                    
                 };
 
-                // Asignar los valores ingresados en los campos de texto a la instancia de producto
-                int supplierId;
-                if (int.TryParse(supplierIDTextBox.Text, out supplierId))
+                if (suppliersIdcomboBox1.SelectedItem != null)
                 {
-                    product.SupplierId = supplierId;
+                    product.SupplierId = Convert.ToInt32(suppliersIdcomboBox1.SelectedValue);
                 }
+
+                // Asignar los valores ingresados en los campos de texto a la instancia de producto
+                
                 product.QuantityPerUnit = quantityTextBox.Text;
-                int categoryId;
-                if (int.TryParse(CategoryIdTextBox.Text, out categoryId))
+
+                if (categoriescomboBox1.SelectedItem != null)
                 {
-                    product.CategoryId = categoryId;
+                    product.CategoryId = Convert.ToInt32(categoriescomboBox1.SelectedValue);
                 }
                 decimal unitPrice;
                 if (decimal.TryParse(UnitPricesTextBox.Text, out unitPrice))
@@ -219,6 +125,14 @@ namespace Practica3
                     _northwindContext.SaveChanges();
                     MessageBox.Show("Producto insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadProducts();
+                    productNameTextBox.Clear();
+                    suppliersIdcomboBox1.SelectedIndex = -1;
+                    categoriescomboBox1.SelectedIndex = -1;
+                    quantityTextBox.Clear();
+                    UnitPricesTextBox.Clear();
+                    StockTextBox.Clear();
+                    OrdenTextBox.Clear();
+                    levelTextbox.Clear();
                 }
                 else
                 {
@@ -228,7 +142,13 @@ namespace Practica3
             }
             catch (DbUpdateException ex)
             {
+                // Mostrar mensaje de error al usuario
                 MessageBox.Show("Error al guardar los cambios en la base de datos: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Mostrar mensaje adicional para informar al usuario sobre el registro del error
+                MessageBox.Show("Se ha producido un error. Por favor, contacte al administrador del sistema para obtener ayuda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                
             }
 
         }
@@ -287,8 +207,8 @@ namespace Practica3
         {
             // Limpiar todos los campos de entrada
             productNameTextBox.Clear();
-            supplierIDTextBox.Clear();
-            CategoryIdTextBox.Clear();
+            suppliersIdcomboBox1.SelectedIndex = -1;
+            categoriescomboBox1.SelectedIndex = -1;
             quantityTextBox.Clear();
             UnitPricesTextBox.Clear();
             StockTextBox.Clear();
@@ -350,8 +270,8 @@ namespace Practica3
         private void button5_Click(object sender, EventArgs e)
         {
             productNameTextBox.Clear();
-            supplierIDTextBox.Clear();
-            CategoryIdTextBox.Clear();
+            suppliersIdcomboBox1.SelectedIndex = -1;
+            categoriescomboBox1.SelectedIndex = -1;
             quantityTextBox.Clear();
             UnitPricesTextBox.Clear();
             StockTextBox.Clear();
@@ -367,13 +287,14 @@ namespace Practica3
         private void ProductsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             productNameTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["ProductNameColumn"].Value);
-            supplierIDTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["SupplierIdColumn"].Value);
-            CategoryIdTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["CategoryIdColumn"].Value);
+            suppliersIdcomboBox1.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["SupplierIdColumn"].Value);
+            categoriescomboBox1.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["CategoryIdColumn"].Value);
             quantityTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["QuantityPerUnitColumn"].Value);
             UnitPricesTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitPriceColumn"].Value);
             StockTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitsInStockColumn"].Value);
             OrdenTextBox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["UnitsOnOrderColumn"].Value);
             levelTextbox.Text = Convert.ToString(ProductsDataGridView.CurrentRow.Cells["ReorderLevelColumn"].Value);
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -382,27 +303,88 @@ namespace Practica3
             {
                 if (ProductsDataGridView.SelectedRows.Count > 0)
                 {
-                    // Obtener el valor de la clave primaria de la fila seleccionada
                     int productId = Convert.ToInt32(ProductsDataGridView.SelectedRows[0].Cells["ProductIdColumn"].Value);
 
-                    // Obtener el producto a modificar
                     var productToUpdate = _northwindContext.Products.Find(productId);
+
                     if (productToUpdate != null)
                     {
-                        // Actualizar las propiedades del producto con los valores de los TextBox
                         productToUpdate.ProductName = productNameTextBox.Text;
-                        productToUpdate.SupplierId = Convert.ToInt32(supplierIDTextBox.Text);
-                        productToUpdate.CategoryId = Convert.ToInt32(CategoryIdTextBox.Text);
                         productToUpdate.QuantityPerUnit = quantityTextBox.Text;
-                        productToUpdate.UnitPrice = Convert.ToDecimal(UnitPricesTextBox.Text);
-                        productToUpdate.UnitsInStock = Convert.ToInt16(StockTextBox.Text);
-                        productToUpdate.UnitsOnOrder = Convert.ToInt16(OrdenTextBox.Text);
-                        productToUpdate.ReorderLevel = Convert.ToInt16(levelTextbox.Text);
 
-                        // Guardar los cambios en la base de datos
-                        _northwindContext.SaveChanges();
-                        LoadProducts();
-                        MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (suppliersIdcomboBox1.SelectedItem != null)
+                        {
+                            productToUpdate.SupplierId = Convert.ToInt32(suppliersIdcomboBox1.SelectedValue);
+                        }
+
+                        if (categoriescomboBox1.SelectedItem != null)
+                        {
+                            productToUpdate.CategoryId = Convert.ToInt32(categoriescomboBox1.SelectedValue);
+                        }
+
+                        decimal unitPrice;
+                        if (decimal.TryParse(UnitPricesTextBox.Text, out unitPrice))
+                        {
+                            productToUpdate.UnitPrice = unitPrice;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, ingrese un valor numérico válido para el precio.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        short unitsInStock;
+                        if (short.TryParse(StockTextBox.Text, out unitsInStock))
+                        {
+                            productToUpdate.UnitsInStock = unitsInStock;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, ingrese un valor numérico válido para las unidades en stock.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        short unitsOnOrder;
+                        if (short.TryParse(OrdenTextBox.Text, out unitsOnOrder))
+                        {
+                            productToUpdate.UnitsOnOrder = unitsOnOrder;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, ingrese un valor numérico válido para las unidades en orden.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        short reorderLevel;
+                        if (short.TryParse(levelTextbox.Text, out reorderLevel))
+                        {
+                            productToUpdate.ReorderLevel = reorderLevel;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, ingrese un valor numérico válido para el nivel de reorden.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Validar el producto actualizado
+                        var validationResult = _productsValidator.Validate(productToUpdate);
+
+                        if (validationResult.IsValid)
+                        {
+                            // Guardar los cambios en la base de datos
+                            _northwindContext.SaveChanges();
+                            LoadProducts();
+                            MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Registrar el evento de actualización en el log
+                            Log.Information("Producto actualizado: ID {ProductId}", productId);
+                        }
+                        else
+                        {
+                            // Si la validación falla, mostrar los mensajes de error de FluentValidation
+                            var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+                            MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -416,9 +398,21 @@ namespace Practica3
             }
             catch (DbUpdateException ex)
             {
-                MessageBox.Show("Error al eliminar el producto: " + ex.InnerException.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                RefreshForm(); // Refrescar todo el formulario incluso en caso de error
+                // Si ocurre un error durante la actualización, registrar el error
+                Log.Error("Error al actualizar el producto: {ErrorMessage}", ex.InnerException?.Message);
+                MessageBox.Show("Error al actualizar el producto. Consulte el registro para más detalles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            catch (Exception ex)
+            {
+                // Capturar cualquier otra excepción y mostrar un mensaje genérico
+                MessageBox.Show("Se ha producido un error al actualizar el producto: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void suppliersIdcomboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

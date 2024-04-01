@@ -40,70 +40,7 @@ namespace Practica3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    var suppliers = new Suppliers();
-            //    suppliers.CompanyName = companyNameTextBox.Text;
-            //    suppliers.ContactName = contactNameTextBox.Text;
-            //    suppliers.ContactTitle = contactTitleTextBox.Text;
-            //    suppliers.Address = AddressTextBox.Text;
-            //    suppliers.City = cityTextBox.Text;
-            //    suppliers.Region = regionTextBox.Text;
-            //    suppliers.PostalCode = postalCodeTextBox.Text;
-            //    suppliers.Country = countryTextBox.Text;
-            //    suppliers.Phone = phoneTextBox.Text;
-            //    suppliers.Fax = faxTextBox.Text;
-            //    suppliers.HomePage = homePageTextBox.Text;
-
-            //    var validationResult = _suppliersValidator
-            //        .Validate(suppliers);
-
-            //    if (validationResult.IsValid)
-            //    {
-            //        _northwindContext.Suppliers.Add(suppliers);
-            //        _northwindContext.SaveChanges();
-            //        MessageBox.Show("Suplidor insertado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        LoadSuppliers();
-
-            //    }
-            //    else
-            //    {
-            //        try
-            //        {
-            //            throw new ApplicationException("Some Error");
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("Lo sentimos. Ocurrio un error inesperado. Intente mas tarde");
-            //            Log.Error(ex, ex.Message);
-            //        }
-            //        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
-            //        MessageBox.Show(validationMessages, "Validation error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            //    }
-
-            //companyNameTextBox.Clear();
-            //contactTitleTextBox.Clear();
-            //AddressTextBox.Clear();
-            //cityTextBox.Clear();
-            //regionTextBox.Clear();
-            //postalCodeTextBox.Clear();
-            //countryTextBox.Clear();
-            //phoneTextBox.Clear();
-            //faxTextBox.Clear();
-            //homePageTextBox.Clear();
-
-
-            //}
-
-
-
-
-
-            //catch (DbUpdateException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error saving products", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
+            
             try
             {
                 var companyName = companyNameTextBox.Text;
@@ -215,15 +152,7 @@ namespace Practica3
                 var supplierToUpdate = _northwindContext.Suppliers.Find(supplierId);
                 if (supplierToUpdate != null)
                 {
-                    // Actualizar las propiedades del producto con los valores de los TextBox
-                    //supplierToUpdate.ProductName = productNameTextBox.Text;
-                    //supplierToUpdate.SupplierId = Convert.ToInt32(supplierIDTextBox.Text);
-                    //supplierToUpdate.CategoryId = Convert.ToInt32(CategoryIdTextBox.Text);
-                    //supplierToUpdate.QuantityPerUnit = quantityTextBox.Text;
-                    //supplierToUpdate.UnitPrice = Convert.ToDecimal(UnitPricesTextBox.Text);
-                    //supplierToUpdate.UnitsInStock = Convert.ToInt16(StockTextBox.Text);
-                    //supplierToUpdate.UnitsOnOrder = Convert.ToInt16(OrdenTextBox.Text);
-                    //supplierToUpdate.ReorderLevel = Convert.ToInt16(levelTextbox.Text);
+                    
 
                     supplierToUpdate.CompanyName = companyNameTextBox.Text;
                     supplierToUpdate.ContactName = contactNameTextBox.Text;
@@ -238,9 +167,22 @@ namespace Practica3
                     supplierToUpdate.HomePage = homePageTextBox.Text;
 
                     // Guardar los cambios en la base de datos
-                    _northwindContext.SaveChanges();
-                    LoadSuppliers();
-                    MessageBox.Show("Suplidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var validationResult = _suppliersValidator.Validate(supplierToUpdate);
+
+                    if (validationResult.IsValid)
+                    {
+                        _northwindContext.Suppliers.Add(supplierToUpdate);
+                        _northwindContext.SaveChanges();
+                        LoadSuppliers();
+                        MessageBox.Show("Suplidor actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    else
+                    {
+                        var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+                        MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
                 else
                 {

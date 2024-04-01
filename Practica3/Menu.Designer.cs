@@ -32,24 +32,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button7 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -96,20 +92,6 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Location = new System.Drawing.Point(-16, -17);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(309, 104);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Ordenes";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -127,11 +109,24 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlText;
-            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.button7);
             this.panel5.Location = new System.Drawing.Point(3, 222);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(277, 67);
             this.panel5.TabIndex = 9;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button7.Location = new System.Drawing.Point(-16, -14);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(309, 104);
+            this.button7.TabIndex = 13;
+            this.button7.Text = "Ordenes";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -140,7 +135,6 @@
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.panel5);
-            this.flowLayoutPanel1.Controls.Add(this.panel7);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1, 104);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -175,47 +169,14 @@
             this.panel3.Size = new System.Drawing.Size(277, 67);
             this.panel3.TabIndex = 13;
             // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.ControlText;
-            this.panel7.Controls.Add(this.button5);
-            this.panel7.Location = new System.Drawing.Point(3, 295);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(277, 67);
-            this.panel7.TabIndex = 16;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button5.Location = new System.Drawing.Point(-16, -18);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(309, 104);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Ordenes Detalles";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ControlText;
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(3, 368);
+            this.panel4.Location = new System.Drawing.Point(3, 295);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(277, 67);
             this.panel4.TabIndex = 14;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(548, 88);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 13;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox1
             // 
@@ -233,21 +194,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.RoyalBlue;
             this.ClientSize = new System.Drawing.Size(914, 558);
-            this.Controls.Add(this.button7);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.panel5.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -259,7 +218,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -267,8 +225,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button7;
     }

@@ -157,9 +157,31 @@ namespace Practica3
                         categoryToUpdate.Description = descriptionTextBox.Text;
 
                         // Guardar los cambios en la base de datos
-                        _northwindContext.SaveChanges();
-                        LoadCategories();
-                        MessageBox.Show("Categoría actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var validationResult = _categoriesValidator.Validate(categoryToUpdate);
+
+                        if (validationResult.IsValid)
+                        {
+                            _northwindContext.Categories.Add(categoryToUpdate);
+                            _northwindContext.SaveChanges();
+                            MessageBox.Show("Categoría actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadCategories();
+                        }
+
+                        else
+                        {
+                            try
+                            {
+                                throw new ApplicationException("Some Error");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Lo sentimos. Ocurrió un error inesperado. Intente más tarde.");
+                                Log.Error(ex, ex.Message);
+                            }
+                            var validationMessages = string.Join("\n", validationResult.Errors.Select(a => a.ErrorMessage));
+                            MessageBox.Show(validationMessages, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                     }
                     else
                     {
